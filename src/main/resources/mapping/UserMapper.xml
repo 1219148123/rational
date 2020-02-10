@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hzs.rc.mapper.UserMapper">
+  <resultMap id="BaseResultMap" type="com.hzs.rc.entity.User">
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="user_account" jdbcType="VARCHAR" property="userAccount" />
+    <result column="user_password" jdbcType="VARCHAR" property="userPassword" />
+    <result column="state_code" jdbcType="VARCHAR" property="stateCode" />
+  </resultMap>
+  <insert id="insertUser" parameterType="com.hzs.rc.entity.User" useGeneratedKeys="true" keyProperty="userId">
+    insert into user ( user_account, user_password)
+    values (#{userAccount,jdbcType=VARCHAR}, #{userPassword,jdbcType=VARCHAR})
+  </insert>
+
+</mapper>

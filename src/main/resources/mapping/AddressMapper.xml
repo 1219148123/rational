@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hzs.rc.mapper.AddressMapper">
+  <resultMap id="BaseResultMap" type="com.hzs.rc.entity.Address">
+    <result column="id" jdbcType="INTEGER" property="id" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="province" jdbcType="VARCHAR" property="province" />
+    <result column="city" jdbcType="VARCHAR" property="city" />
+    <result column="county" jdbcType="VARCHAR" property="county" />
+    <result column="spec_addr" jdbcType="VARCHAR" property="specAddr" />
+  </resultMap>
+  <insert id="insertAddress" parameterType="com.hzs.rc.entity.Address">
+    insert into address (id, user_id, province, 
+      city, county, spec_addr
+      )
+    values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{province,jdbcType=VARCHAR}, 
+      #{city,jdbcType=VARCHAR}, #{county,jdbcType=VARCHAR}, #{specAddr,jdbcType=VARCHAR}
+      )
+  </insert>
+
+</mapper>
