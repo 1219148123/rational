@@ -20,8 +20,8 @@ create table user_detail(
     user_email varchar(20) default null comment '用户邮箱',
     user_phone varchar(18) default null comment '用户电话',
     user_address_id int(11) default  null comment '用户地址可以有多个用,隔开',
-    user_plan_spent double(5,2) default 0 comment '用户每月计划消费数额',
-    user_current_spent double(5,2) default 0 comment '用户当前消费数额',
+    user_plan_spent double(8,2) default 0 comment '用户每月计划消费数额',
+    user_current_spent double(8,2) default 0 comment '用户当前消费数额',
     user_create_time timestamp default CURRENT_TIMESTAMP comment '用户创建时间',
     open_store int(2) default 0 comment '是否开店,0为没有,1为店主',
     primary key (id)
