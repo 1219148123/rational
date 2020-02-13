@@ -18,4 +18,5 @@ spring:
 mybatis:
   mapper-locations: classpath:mapping/*Mapper.xml
   type-aliases-package: com.hzs.rc.entity
-
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl

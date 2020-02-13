@@ -9,7 +9,6 @@ import org.springframework.stereotype.Component;
  * @Date 2020年01月21日
  */
 import java.util.Date;
-@Component
 @Data
 public class UserDetail {
     private Integer id;
@@ -31,4 +30,6 @@ public class UserDetail {
     private Double userCurrentSpent;
 
     private Date userCreateTime;
+
+    private Long openStore;
 }

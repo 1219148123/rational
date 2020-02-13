@@ -1,5 +1,6 @@
 package com.hzs.rc.service;
 
+import com.hzs.rc.dto.UserDetailDTO;
 import com.hzs.rc.entity.User;
 
 /**
@@ -10,4 +11,8 @@ import com.hzs.rc.entity.User;
  */
 public interface UserDetailService {
     Integer insertUserDetailForSignUp(User user);
+
+    void setUserPlantSpent(UserDetailDTO userDetailDTO);
+
+    void updateUserDetail(UserDetailDTO userDetailDTO);
 }

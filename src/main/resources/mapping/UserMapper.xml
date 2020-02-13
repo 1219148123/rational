@@ -11,5 +11,14 @@
     insert into user ( user_account, user_password)
     values (#{userAccount,jdbcType=VARCHAR}, #{userPassword,jdbcType=VARCHAR})
   </insert>
+  <update id="updatePassword" parameterType="com.hzs.rc.dto.PasswordDTO">
+    update user set
+    user_password=#{newPassword}
+    where user_id=#{userId}
+  </update>
+  <select id="getUserOldPassword" resultType="java.lang.String">
+    select user_password from user
+    where user_id=#{userId,jdbcType=VARCHAR}
+  </select>
 
 </mapper>
