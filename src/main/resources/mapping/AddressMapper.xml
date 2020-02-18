@@ -8,14 +8,37 @@
     <result column="city" jdbcType="VARCHAR" property="city" />
     <result column="county" jdbcType="VARCHAR" property="county" />
     <result column="spec_addr" jdbcType="VARCHAR" property="specAddr" />
+    <result column="consignee" jdbcType="VARCHAR" property="consignee" />
+    <result column="phone" jdbcType="VARCHAR" property="phone" />
   </resultMap>
-  <insert id="insertAddress" parameterType="com.hzs.rc.entity.Address">
-    insert into address (id, user_id, province, 
-      city, county, spec_addr
-      )
-    values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{province,jdbcType=VARCHAR}, 
-      #{city,jdbcType=VARCHAR}, #{county,jdbcType=VARCHAR}, #{specAddr,jdbcType=VARCHAR}
-      )
+
+  <insert id="insert" parameterType="com.hzs.rc.entity.Address">
+    insert into address ( user_id, province,
+      city, county, spec_addr, 
+      consignee, phone)
+    values (#{userId,jdbcType=INTEGER}, #{province,jdbcType=VARCHAR},
+      #{city,jdbcType=VARCHAR}, #{county,jdbcType=VARCHAR}, #{specAddr,jdbcType=VARCHAR},
+      #{consignee,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR})
   </insert>
+  <update id="updateAddress" parameterType="com.hzs.rc.entity.Address">
+    update address
+    set province=#{province,jdbcType=VARCHAR},city=#{city,jdbcType=VARCHAR},county=#{county,jdbcType=VARCHAR},
+    spec_addr=#{specAddr,jdbcType=VARCHAR},consignee=#{consignee,jdbcType=VARCHAR},phone=#{phone,jdbcType=VARCHAR}
+    where id=#{id,jdbcType=VARCHAR}
+  </update>
+  <select id="addressDetail" resultType="com.hzs.rc.vo.AddressVO">
+    select * from address
+    where id=#{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteAddress">
+    delete from address
+    where id=#{id,jdbcType=INTEGER}
+  </delete>
+  <select id="getAllAddress" resultType="com.hzs.rc.vo.AddressVO">
+    select id,province, city, county, spec_addr, consignee, phone
+    from address
+    where user_id=#{userId,jdbcType=VARCHAR}
+  </select>
+
 
 </mapper>

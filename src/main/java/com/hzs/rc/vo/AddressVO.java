@@ -1,14 +1,16 @@
-package com.hzs.rc.entity;
+package com.hzs.rc.vo;
 
 import lombok.Data;
-import lombok.ToString;
 
+/**
+ * @author hanzs
+ * @version 1.0
+ * @description: entity
+ * @Date 2020年02月18日
+ */
 @Data
-@ToString
-public class Address {
+public class AddressVO {
     private Integer id;
-
-    private Integer userId;
 
     private String province;
 
@@ -21,5 +23,4 @@ public class Address {
     private String consignee;
 
     private String phone;
-
 }
