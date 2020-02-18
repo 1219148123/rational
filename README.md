@@ -44,11 +44,13 @@ create table admin(
 ```mysql
 create table address(
     id int(11) not null auto_increment,
-    user_id int(11) not null comment '用户id',
+    user_id int(11) not null comment '下单用户id',
     province varchar(15) default null comment '省',
     city varchar(15) default null comment '市',
     county varchar(15) default null comment '县',
     spec_addr varchar(40) default null comment '具体地址',
+    consignee varchar(20) not null comment '收获人姓名',
+    phone varchar(18) not null comment'联系电话',
     primary key (id)
 )ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 ```
