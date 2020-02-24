@@ -34,7 +34,7 @@ create table user_detail(
 create table admin(
 	id int(11) not null auto_increment,
 	admin_account varchar(13),
-	admin_password(13),
+	admin_password  varchar(13),
 	primary key (id)
 )ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 ```
