@@ -16,6 +16,11 @@
     user_password=#{newPassword}
     where user_id=#{userId}
   </update>
+  <update id="openStore">
+    update user set
+    open_store= 1
+    where user_id=#{userId}
+  </update>
   <select id="getUserOldPassword" resultType="java.lang.String">
     select user_password from user
     where user_id=#{userId,jdbcType=VARCHAR}

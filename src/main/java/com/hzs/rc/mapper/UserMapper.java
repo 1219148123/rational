@@ -12,4 +12,7 @@ public interface UserMapper {
 
     //修改密码
     void updatePassword(PasswordDTO passwordDTO);
+
+    //状态修改为开店(管理员审核的时候设置)
+    void openStore(Integer userId);
 }
