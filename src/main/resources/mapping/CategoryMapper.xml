@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hzs.rc.mapper.CategoryMapper">
+  <resultMap id="BaseResultMap" type="com.hzs.rc.entity.Category">
+    <result column="cate_id" jdbcType="INTEGER" property="cateId" />
+    <result column="cate_name" jdbcType="VARCHAR" property="cateName" />
+  </resultMap>
+  <insert id="addCate" parameterType="com.hzs.rc.entity.Category">
+    insert into category (cate_name)
+    values (#{cateName,jdbcType=VARCHAR})
+  </insert>
+  <select id="getCateGoryVOList" resultType="com.hzs.rc.vo.CategoryVO">
+    select * from category
+  </select>
+</mapper>
