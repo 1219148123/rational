@@ -14,6 +14,11 @@ spring:
       maximum-pool-size: 10 #连接池最大连接数，默认是10
       auto-commit: true #此属性控制从池返回的连接的默认自动提交行为,默认值：true
 
+  servlet:
+    multipart:
+      max-request-size: 10MB
+      max-file-size: 10MB
+
 
 mybatis:
   mapper-locations: classpath:mapping/*Mapper.xml
