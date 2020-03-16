@@ -9,5 +9,5 @@ import com.hzs.rc.dto.StoreDTO;
  * @version : 1.0
  */
 public interface StoreService {
-    public void inserStore(StoreDTO storeDTO);
+    public void inserStore(StoreDTO storeDTO,String storePhoto);
 }

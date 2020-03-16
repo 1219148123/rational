@@ -29,14 +29,25 @@ public class StoreController {
     @Resource
     StoreService storeService;
     private static final Logger LOGGER = LoggerFactory.getLogger(StoreController.class);
+
     @ApiOperation(value = "添加店铺", notes = "根据参数添加店铺")
     @PostMapping(value = "/addStore")
-    public void addStore(@Valid @RequestBody StoreDTO storeDTO) {
-         storeService.inserStore(storeDTO);
+    public void addStore(@Valid StoreDTO storeDTO, @RequestParam("file") MultipartFile file) {
+        LOGGER.info("{}", storeDTO + "-------------" + file.getOriginalFilename());
+        String upload = upload(file);
+        LOGGER.info("{}", upload);
+        storeService.inserStore(storeDTO,upload);
     }
 
-    @PostMapping("/upload")
-    public String upload(@RequestParam("file") MultipartFile file) {
+    /**
+     * @描述 文件上传公共方法
+     * @参数 [file]
+     * @返回值 java.lang.String
+     * @创建人 hanzs
+     * @创建时间 2020/3/16
+     */
+    public String upload(MultipartFile file) {
+
         if (file.isEmpty()) {
             return "上传失败，请选择文件";
         }
@@ -46,9 +57,8 @@ public class StoreController {
         File dest = new File(filePath + fileName);
         try {
             file.transferTo(dest);
-            LOGGER.info("上传成功");
-            LOGGER.info("{}",dest+"/////" + contentType);
-            return "上传成功";
+//            LOGGER.info("{}",dest+"/////" + contentType);
+            return dest.toString();
         } catch (IOException e) {
             LOGGER.error(e.toString(), e);
         }

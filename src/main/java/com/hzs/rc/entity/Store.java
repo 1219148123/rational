@@ -11,6 +11,8 @@ public class Store {
 
     private String storeName;
 
+    private String storePhoto;
+
     private String storeDesc;
 
     private Integer storeCate;

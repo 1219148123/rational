@@ -5,16 +5,17 @@
     <result column="store_id" property="storeId" jdbcType="INTEGER" />
     <result column="owner_id" property="ownerId" jdbcType="INTEGER" />
     <result column="store_name" property="storeName" jdbcType="VARCHAR" />
+    <result column="store_photo" property="storePhoto" jdbcType="VARCHAR" />
     <result column="store_desc" property="storeDesc" jdbcType="VARCHAR" />
     <result column="sotre_cate" property="storeCate" jdbcType="INTEGER" />
     <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
     <result column="state_code" property="stateCode" jdbcType="VARCHAR" />
   </resultMap>
   <insert id="insertStore" parameterType="com.hzs.rc.entity.Store" >
-    insert into store ( owner_id, store_name,
+    insert into store ( owner_id, store_name,store_photo,
       store_desc, store_cate, create_time,
       state_code)
-    values ( #{ownerId,jdbcType=INTEGER}, #{storeName,jdbcType=VARCHAR},
+    values ( #{ownerId,jdbcType=INTEGER}, #{storeName,jdbcType=VARCHAR},#{storePhoto,jdbcType=VARCHAR},
       #{storeDesc,jdbcType=VARCHAR}, #{storeCate,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP},
       #{stateCode,jdbcType=VARCHAR})
   </insert>

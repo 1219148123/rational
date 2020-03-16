@@ -21,7 +21,7 @@ public class StoreServiceImpl implements StoreService {
     @Resource
     StoreMapper storeMapper;
     @Override
-    public void inserStore(StoreDTO storeDTO) {
+    public void inserStore(StoreDTO storeDTO,String storePhoto) {
         //1.创建Store对象
         Store store = new Store();
         //2.bean属性转移
@@ -29,6 +29,7 @@ public class StoreServiceImpl implements StoreService {
         store.setCreateTime(new Date());
         store.setOwnerId(1);//TODO 后期改成当前登录用户的id
         store.setStateCode("1001");
+        store.setStorePhoto(storePhoto);
         //3.插入店铺
         storeMapper.insertStore(store);
     }
