@@ -35,6 +35,6 @@
             <property name="enableSubPackages" value="true" />
         </javaClientGenerator>
         <!--指定要逆向生成哪张表-->
-        <table tableName="store" domainObjectName="Store"  enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
+        <table tableName="category" domainObjectName="Category"  enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
     </context>
 </generatorConfiguration>
