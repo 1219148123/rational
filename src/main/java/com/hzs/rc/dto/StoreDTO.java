@@ -17,15 +17,17 @@ import javax.validation.constraints.NotNull;
 @Data
 @ToString
 public class StoreDTO {
+    @ApiModelProperty(value = "storeId", example = "", required = false, dataType = "Integer")
+    private Integer storeId;
+
     @NotBlank(message = "店铺名称,不能为空")
     @ApiModelProperty(value = "店铺名称", example = "", required = true, dataType = "String")
     private String storeName;
 
-    @ApiModelProperty(value = "店铺名称", example = "", required = true, dataType = "String")
+    @ApiModelProperty(value = "店铺描述", example = "", required = true, dataType = "String")
     private String storeDesc;
 
     @NotNull(message = "店铺类别,不能为空")
     @ApiModelProperty(value = "店铺类别", example = "", required = true, dataType = "Integer")
     private Integer storeCate;
-
 }

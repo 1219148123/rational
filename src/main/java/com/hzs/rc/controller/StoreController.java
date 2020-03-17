@@ -2,11 +2,11 @@ package com.hzs.rc.controller;
 
 import com.hzs.rc.dto.StoreDTO;
 import com.hzs.rc.service.StoreService;
+import com.hzs.rc.vo.StoreVO;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.util.ClassUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -14,6 +14,7 @@ import javax.annotation.Resource;
 import javax.validation.Valid;
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 
 
 /**
@@ -37,6 +38,32 @@ public class StoreController {
         String upload = upload(file);
         LOGGER.info("{}", upload);
         storeService.inserStore(storeDTO,upload);
+    }
+
+
+    @ApiOperation(value = "获取店铺详情", notes = "店铺详情")
+    @GetMapping(value = "/getStoreList")
+    public List<StoreVO> getStoreList(String userId){
+        return storeService.storeList(Integer.valueOf(userId));
+    }
+
+    @ApiOperation(value = "获取店铺详情", notes = "店铺详情")
+    @GetMapping(value = "/getStore")
+    public StoreVO getStoreDetail(String id){
+        return storeService.stogerDetail(Integer.valueOf(id));
+    }
+
+    @ApiOperation(value = "修改店铺", notes = "修改店铺")
+    @PostMapping(value = "/updateStore")
+    public void updateStore(@Valid StoreDTO storeDTO, @RequestParam("file") MultipartFile file){
+        String storePhoto = upload(file);
+        storeService.updateStore(storeDTO,storePhoto);
+    }
+
+    @ApiOperation(value = "修改置为无效", notes = "修改店铺")
+    @DeleteMapping(value = "/deleteStore")
+    public void deleteStore(String id){
+        storeService.invalidStore(Integer.valueOf(id));
     }
 
     /**

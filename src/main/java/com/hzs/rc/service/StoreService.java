@@ -1,6 +1,9 @@
 package com.hzs.rc.service;
 
 import com.hzs.rc.dto.StoreDTO;
+import com.hzs.rc.vo.StoreVO;
+
+import java.util.List;
 
 /**
  * <p>接口</p>
@@ -10,4 +13,12 @@ import com.hzs.rc.dto.StoreDTO;
  */
 public interface StoreService {
     public void inserStore(StoreDTO storeDTO,String storePhoto);
+
+    public List<StoreVO> storeList(Integer userId);
+
+    public void updateStore(StoreDTO storeDTO,String storePhoto);
+
+    public void invalidStore(Integer id);
+
+    public StoreVO stogerDetail(Integer id);
 }
