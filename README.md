@@ -1,4 +1,3 @@
-# rational
 ##### user表/user_deatil表(后续添加头像属性)
 
 ```mysql
@@ -34,7 +33,7 @@ create table user_detail(
 create table admin(
 	id int(11) not null auto_increment,
 	admin_account varchar(13),
-	admin_password  varchar(13),
+	admin_password(13) varchar(20),
 	primary key (id)
 )ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 ```
@@ -55,6 +54,24 @@ create table address(
 )ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 ```
 
+
+
+##### 店铺表
+
+```mysql
+create table store(
+    store_id int(11) not null auto_increment comment 'store表主键',
+    owner_id int(11) not null comment '逻辑外键店主',
+    store_name varchar(250) not null comment '店铺名字',
+    store_photo varchar(300) not null comment '店铺头像',
+    store_desc varchar(500) comment '店铺简介',
+    sotre_cate int(12) not null comment '店铺类别',
+    create_time timestamp NOT NULL comment '店铺创建时间',
+    state_code varchar(4) default '1001' comment '店铺状态码 1000有效,1001无效 默认无效只有管理员审核才是有效',
+    primary key (store_id)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+```
+
 ##### 商品表
 
 ```mysql
@@ -63,11 +80,12 @@ create table address(
 --
 
 CREATE TABLE `goods` (
-  `goodsId` int(12) NOT NULL auto_increment comment 'goods表主键',
-  `goodsName` varchar(50) NOT NULL comment '商品名字',
+  `good_id` int(11) NOT NULL auto_increment comment 'goods表主键',
+  `store_id` int(11) not null,
+  `good_name` varchar(50) NOT NULL comment '商品名字',
   `price` float(12) NOT NULL comment '商品价格',
-  `num` int(12) NOT NULL comment '商品数量',
-  `upTime` datetime NOT NULL comment '商品信息更新时间',
+  `num` int(12) NOT NULL comment '商品库存',
+  `update_time` datetime NOT NULL comment '商品信息更新时间',
   `category` int(12) NOT NULL comment '所属分类',
   `img_addr` varchar(2000) DEFAULT '' comment '商品图片地址',  
   `description` varchar(2000) NOT NULL comment '商品描述',
@@ -77,111 +95,42 @@ CREATE TABLE `goods` (
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 ```
 
-
-
-##### 店铺表
+##### 购物车表
 
 ```mysql
-create table store(
-    store_id int(11) not null auto_increment comment 'store表主键',
-    owner_id int(11) not null comment '逻辑外键店主',
-    create_time timestamp NOT NULL comment '店铺创建时间',
-    state_code varchar(4) default '1000' comment '店铺状态码 1000有效,1001无效',
-    primary key (store_id)
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+create table hzs_cart(
+	id int(11) not null  AUTO_INCREMENT,
+    user_id int(11) not null,
+    good_id int(11) default null comment '商品id',
+    quantity int(11) default 0 comment '数量',
+    checked int(11) default 0 comment'是否选择，1=已勾选，0=未勾选',
+    create_time timestamp default null comment '创建时间',
+    update_time timestamp default null comment '修改时间',
+    primary key (id)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 ```
-
-
-
-##### 店铺商品关系表
-
-```mysql
-create table store_user_rel(
-    id int(11) not null auto_increment comment 'store_user_rel表主键'
-    store_id int(11) not null comment 'store表主键',
-    goodsId int(12) not null comment '商品标识符',
-    create_time timestamp NOT NULL comment '商品添加时间',
-    state_code varchar(4) default '1000' comment '商品状态码 1000有效,1001无效',
-    primary key (store_id)
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
-```
-
-##### 分类表
-
-```mysql
--- 表的结构 `category`
---
-
-CREATE TABLE `category` (
-  `cateId` int(12) NOT NULL auto_increment,
-  `cateName` varchar(50) NOT NULL
-   `primary` key (cateId)
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
-
-
-INSERT INTO `category` (`cateId`, `cateName`) VALUES
-(1, '数码'),
-(2, '服饰'),
-(3, '家电'),
-(4, '书籍');
-```
-
-
-
-
 
 ##### 订单表
 
 ```mysql
---
--- 表的结构 `indent`
---
-
 CREATE TABLE `indent` (
-  `orderId` int(12) NOT NULL,
-  `userId` int(11) NOT NULL,
-  `orderTime` timestamp NOT NULL,
-  `price` float NOT NULL,
-  `addressId` int(12) NOT NULL
+  `order_id` int(12) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `order_time` timestamp NOT NULL,
+  `total_price` float NOT NULL,
+  `address_id` int(12) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 ```
 
-
-
-##### 购物车表
+订单详情表
 
 ```mysql
---
--- 表的结构 `shopcart`
---
-
-CREATE TABLE `shopcart` (
-  `userId` int(12) NOT NULL,
-  `goodsid` int(12) NOT NULL,
-  `is_order` int(2) DEFAULT NULL comment '下单状态码 1已下单,0未下单',
-  `goodsNum` int(12) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-```
-
-
-
-##### 论坛帖子表
-
-```mysql
-REATE TABLE `question` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `title` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `description` text COLLATE utf8_unicode_ci,
-  `gmt_create` bigint(20) DEFAULT NULL,
-  `gmt_modified` bigint(20) DEFAULT NULL,
-  `creator` varchar(256) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `comment_count` int(11) DEFAULT '0',
-  `view_count` int(11) DEFAULT '0',
-  `like_count` int(11) DEFAULT '0',
-  `tag` varchar(256) COLLATE utf8_unicode_ci DEFAULT NULL,
-  PRIMARY KEY (`id`)
+create table indent_detail(
+	id int(11) not null  AUTO_INCREMENT  comment '订单详情id',
+    user_id int(11) not null  comment '用户id',
+    good_id int(11) default null comment '商品id',
+    quantity int(11) default 0 comment '数量',
+    primary key (id)
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 ```
-
-
 
