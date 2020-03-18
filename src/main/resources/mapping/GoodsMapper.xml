@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hzs.rc.mapper.GoodsMapper">
+    <resultMap id="BaseResultMap" type="com.hzs.rc.entity.Goods">
+        <result column="good_id" property="goodId" jdbcType="INTEGER"/>
+        <result column="store_id" property="storeId" jdbcType="INTEGER"/>
+        <result column="good_name" property="goodName" jdbcType="VARCHAR"/>
+        <result column="price" property="price" jdbcType="REAL"/>
+        <result column="num" property="num" jdbcType="INTEGER"/>
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+        <result column="category" property="category" jdbcType="INTEGER"/>
+        <result column="img_addr" property="imgAddr" jdbcType="VARCHAR"/>
+        <result column="description" property="description" jdbcType="VARCHAR"/>
+        <result column="priority" property="priority" jdbcType="INTEGER"/>
+        <result column="good_status" property="goodStatus" jdbcType="INTEGER"/>
+    </resultMap>
+    <insert id="insertGood" parameterType="com.hzs.rc.entity.Goods" useGeneratedKeys="true" keyProperty="goodId">
+        insert into goods (store_id, good_name,
+        price, num, update_time,
+        category,description,
+        priority)
+        values (#{storeId,jdbcType=INTEGER}, #{goodName,jdbcType=VARCHAR},
+        #{price,jdbcType=REAL}, #{num,jdbcType=INTEGER}, #{updateTime,jdbcType=TIMESTAMP},
+        #{category,jdbcType=INTEGER}, #{description,jdbcType=VARCHAR},
+        #{priority,jdbcType=INTEGER})
+    </insert>
+    <update id="invalidGood">
+        update goods
+        set good_status = 0
+        where good_id = #{goodId,jdbcType=INTEGER}
+    </update>
+    <update id="updateGoodsDetail">
+        update goods
+        set good_name = #{goodName,jdbcType=VARCHAR},
+        price= #{price,jdbcType=REAL},num=#{num,jdbcType=INTEGER},
+        update_time=#{updateTime,jdbcType=TIMESTAMP},category=#{category,jdbcType=INTEGER},
+        description= #{description,jdbcType=VARCHAR},
+        priority = #{priority,jdbcType=INTEGER})
+    </update>
+    <update id="updateImgAddr">
+        update goods
+        set img_addr = #{imgAddr,jdbcType=VARCHAR}
+        where good_id = #{goodId,jdbcType=INTEGER}
+    </update>
+    <select id="selectGoodsList" resultType="com.hzs.rc.vo.GoodsVO">
+        select * from goods
+        where store_id = #{storeId,jdbcType=INTEGER}
+        and good_status=1
+    </select>
+    <select id="goodsDetail" resultType="com.hzs.rc.vo.GoodsVO">
+        select * from goods
+        where good_id = #{goodId,jdbcType=INTEGER}
+    </select>
+
+</mapper>

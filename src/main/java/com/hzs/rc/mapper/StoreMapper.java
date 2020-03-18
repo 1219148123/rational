@@ -9,6 +9,9 @@ public interface StoreMapper {
     //开店 普通用户
     void insertStore(Store record);
 
+    //开店 和修改的时候修改图片
+    void updatePhoto(Store store);
+
     //查看所有的店铺  普通用户 目前查的是所有状态后续改为只查有效的店铺 TODO
     List<StoreVO> storeListUser(Integer userId);
 

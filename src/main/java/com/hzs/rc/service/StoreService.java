@@ -2,6 +2,7 @@ package com.hzs.rc.service;
 
 import com.hzs.rc.dto.StoreDTO;
 import com.hzs.rc.vo.StoreVO;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -12,11 +13,11 @@ import java.util.List;
  * @version : 1.0
  */
 public interface StoreService {
-    public void inserStore(StoreDTO storeDTO,String storePhoto);
+    public void inserStore(StoreDTO storeDTO, MultipartFile file);
 
     public List<StoreVO> storeList(Integer userId);
 
-    public void updateStore(StoreDTO storeDTO,String storePhoto);
+    public void updateStore(StoreDTO storeDTO, MultipartFile file);
 
     public void invalidStore(Integer id);
 

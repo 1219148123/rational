@@ -11,17 +11,17 @@
         <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
         <result column="state_code" property="stateCode" jdbcType="VARCHAR"/>
     </resultMap>
-    <insert id="insertStore" parameterType="com.hzs.rc.entity.Store">
-        insert into store ( owner_id, store_name,store_photo,
+    <insert id="insertStore" parameterType="com.hzs.rc.entity.Store" useGeneratedKeys="true" keyProperty="storeId">
+        insert into store ( owner_id, store_name,
         store_desc, store_cate, create_time,
         state_code)
-        values ( #{ownerId,jdbcType=INTEGER}, #{storeName,jdbcType=VARCHAR},#{storePhoto,jdbcType=VARCHAR},
+        values ( #{ownerId,jdbcType=INTEGER}, #{storeName,jdbcType=VARCHAR},
         #{storeDesc,jdbcType=VARCHAR}, #{storeCate,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP},
         #{stateCode,jdbcType=VARCHAR})
     </insert>
     <update id="updateStore">
         update store
-        set store_name= #{storeName,jdbcType=VARCHAR},store_photo=#{storePhoto,jdbcType=VARCHAR},
+        set store_name= #{storeName,jdbcType=VARCHAR},
         store_desc= #{storeDesc,jdbcType=VARCHAR},store_cate=#{storeCate,jdbcType=INTEGER}
         where store_id= #{storeId,jdbcType=INTEGER}
     </update>
@@ -34,6 +34,11 @@
         update store
         set state_code= 1000
         where store_id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updatePhoto">
+        update store
+        set store_photo= #{storePhoto,jdbcType=VARCHAR}
+        where store_id = #{storeId,jdbcType=INTEGER}
     </update>
     <select id="storeListUser" resultType="com.hzs.rc.vo.StoreVO">
         select * from store

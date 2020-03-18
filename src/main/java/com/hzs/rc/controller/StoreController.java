@@ -35,9 +35,7 @@ public class StoreController {
     @PostMapping(value = "/addStore")
     public void addStore(@Valid StoreDTO storeDTO, @RequestParam("file") MultipartFile file) {
         LOGGER.info("{}", storeDTO + "-------------" + file.getOriginalFilename());
-        String upload = upload(file);
-        LOGGER.info("{}", upload);
-        storeService.inserStore(storeDTO,upload);
+        storeService.inserStore(storeDTO,file);
     }
 
 
@@ -56,8 +54,7 @@ public class StoreController {
     @ApiOperation(value = "修改店铺", notes = "修改店铺")
     @PostMapping(value = "/updateStore")
     public void updateStore(@Valid StoreDTO storeDTO, @RequestParam("file") MultipartFile file){
-        String storePhoto = upload(file);
-        storeService.updateStore(storeDTO,storePhoto);
+        storeService.updateStore(storeDTO,file);
     }
 
     @ApiOperation(value = "修改置为无效", notes = "修改店铺")
@@ -65,32 +62,4 @@ public class StoreController {
     public void deleteStore(String id){
         storeService.invalidStore(Integer.valueOf(id));
     }
-
-    /**
-     * @描述 文件上传公共方法
-     * @参数 [file]
-     * @返回值 java.lang.String
-     * @创建人 hanzs
-     * @创建时间 2020/3/16
-     */
-    public String upload(MultipartFile file) {
-
-        if (file.isEmpty()) {
-            return "上传失败，请选择文件";
-        }
-        String contentType = file.getContentType();
-        String fileName = file.getOriginalFilename();
-        String filePath = "D://image//store//";
-        File dest = new File(filePath + fileName);
-        try {
-            file.transferTo(dest);
-//            LOGGER.info("{}",dest+"/////" + contentType);
-            return dest.toString();
-        } catch (IOException e) {
-            LOGGER.error(e.toString(), e);
-        }
-        return "上传失败！";
-    }
-
-
 }
