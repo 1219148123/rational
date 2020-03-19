@@ -20,4 +20,6 @@ public interface GoodService {
     List<GoodsVO> goodsList(Integer storeId);
 
     GoodsVO goodDetail(Integer goodId);
+
+    void updateGood(GoodsDTO goodsDTO, MultipartFile[] uploadFiles);
 }

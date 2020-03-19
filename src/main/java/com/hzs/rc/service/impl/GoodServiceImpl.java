@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -34,12 +33,12 @@ public class GoodServiceImpl implements GoodService {
         BeanUtils.copyProperties(goodsDTO, goods);
         goods.setUpdateTime(new Date());
         goodsMapper.insertGood(goods);
-        List upload = upload(uploadFiles,goods.getStoreId());
+        List upload = upload(uploadFiles, goods.getStoreId());
         String imgAddr = "";
-        for(int i = 0 ; i < upload.size()-1; i++){
+        for (int i = 0; i < upload.size() - 1; i++) {
             imgAddr += upload.get(i) + ",";
         }
-        imgAddr += upload.get(upload.size()-1);
+        imgAddr += upload.get(upload.size() - 1);
         goods.setImgAddr(imgAddr);
         goodsMapper.updateImgAddr(goods);
     }
@@ -57,6 +56,26 @@ public class GoodServiceImpl implements GoodService {
     @Override
     public GoodsVO goodDetail(Integer goodId) {
         return goodsMapper.goodsDetail(goodId);
+    }
+
+    @Override
+    public void updateGood(GoodsDTO goodsDTO, MultipartFile[] uploadFiles) {
+        Goods goods = new Goods();
+        BeanUtils.copyProperties(goodsDTO, goods);
+        goods.setUpdateTime(new Date());
+        goodsMapper.updateGoodsDetail(goods);
+        //获取当前这个商品的信息
+        GoodsVO goodsVO = goodsMapper.goodsDetail(goods.getGoodId());
+        //修改
+        BeanUtils.copyProperties(goodsVO, goods);
+        List upload = upload(uploadFiles, goods.getStoreId());
+        String imgAddr = "";
+        for (int i = 0; i < upload.size() - 1; i++) {
+            imgAddr += upload.get(i) + ",";
+        }
+        imgAddr += upload.get(upload.size() - 1);
+        goods.setImgAddr(imgAddr);
+        goodsMapper.updateImgAddr(goods);
     }
 
 

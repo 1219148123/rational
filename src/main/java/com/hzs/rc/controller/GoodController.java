@@ -50,35 +50,8 @@ public class GoodController {
         return goodService.goodsList(Integer.valueOf(storeId));
     }
 
-    @PostMapping("/uploads")
-    public String upload(MultipartFile[] uploadFiles, HttpServletRequest request) {
-        List list = new ArrayList();//存储生成的访问路径
-        if (uploadFiles.length > 0) {
-            for (int i = 0; i < uploadFiles.length; i++) {
-                MultipartFile uploadFile = uploadFiles[i];
-                //设置上传文件的位置在该项目目录下的uploadFile文件夹下，并根据上传的文件日期，进行分类保存
-                File folder = new File("D://image//");
-                if (!folder.exists()) {
-                    folder.mkdirs();
-                }
-
-                String oldName = uploadFile.getOriginalFilename();
-                System.out.println("oldName = " + oldName);
-                try {
-                    //保存文件
-                    uploadFile.transferTo(new File(folder, oldName));
-
-                    //生成上传文件的访问路径
-                    String filePath = "D://image//" + oldName;
-                    list.add(filePath);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-            return list.toString();
-        } else if (uploadFiles.length == 0) {
-            return "请选择文件";
-        }
-        return "上传失败";
+    @PostMapping("update")
+    public void updateGood(MultipartFile[] uploadFiles, @Valid GoodsDTO goodsDTO){
+        goodService.updateGood(goodsDTO,uploadFiles);
     }
 }

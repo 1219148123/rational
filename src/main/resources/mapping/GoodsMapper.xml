@@ -35,7 +35,8 @@
         price= #{price,jdbcType=REAL},num=#{num,jdbcType=INTEGER},
         update_time=#{updateTime,jdbcType=TIMESTAMP},category=#{category,jdbcType=INTEGER},
         description= #{description,jdbcType=VARCHAR},
-        priority = #{priority,jdbcType=INTEGER})
+        priority = #{priority,jdbcType=INTEGER}
+        where good_id = #{goodId,jdbcType=INTEGER}
     </update>
     <update id="updateImgAddr">
         update goods
