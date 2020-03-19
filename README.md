@@ -98,17 +98,18 @@ CREATE TABLE `goods` (
 ##### 购物车表
 
 ```mysql
-create table hzs_cart(
+create table cart(
 	id int(11) not null  AUTO_INCREMENT,
     user_id int(11) not null,
     good_id int(11) default null comment '商品id',
     quantity int(11) default 0 comment '数量',
     checked int(11) default 0 comment'是否选择，1=已勾选，0=未勾选',
-    create_time timestamp default null comment '创建时间',
-    update_time timestamp default null comment '修改时间',
+    create_time datetime NOT NULL  comment '创建时间',
+    update_time datetime NOT NULL  comment '修改时间',
     primary key (id)
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 ```
+
 
 ##### 订单表
 
