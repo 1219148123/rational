@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hzs.rc.mapper.OrderDetailMapper" >
+  <resultMap id="BaseResultMap" type="com.hzs.rc.entity.OrderDetail" >
+    <result column="id" property="id" jdbcType="INTEGER" />
+    <result column="order_id" property="orderId" jdbcType="INTEGER" />
+    <result column="good_id" property="goodId" jdbcType="INTEGER" />
+    <result column="quantity" property="quantity" jdbcType="INTEGER" />
+    <result column="price" property="price" jdbcType="DOUBLE" />
+    <result column="total_price" property="totalPrice" jdbcType="DECIMAL" />
+  </resultMap>
+  <insert id="insertOrdertail" parameterType="com.hzs.rc.entity.OrderDetail" >
+    insert into order_detail (order_id, good_id,
+      quantity, price, total_price)
+    values (#{orderId,jdbcType=INTEGER}, #{goodId,jdbcType=INTEGER},
+      #{quantity,jdbcType=INTEGER}, #{price,jdbcType=DOUBLE}, #{totalPrice,jdbcType=DECIMAL})
+  </insert>
+
+</mapper>

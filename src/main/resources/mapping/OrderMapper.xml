@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hzs.rc.mapper.OrderMapper">
+    <resultMap id="BaseResultMap" type="com.hzs.rc.entity.Order">
+        <result column="order_id" property="orderId" jdbcType="INTEGER"/>
+        <result column="user_id" property="userId" jdbcType="INTEGER"/>
+        <result column="order_time" property="orderTime" jdbcType="TIMESTAMP"/>
+        <result column="total_price" property="totalPrice" jdbcType="DECIMAL"/>
+        <result column="address_id" property="addressId" jdbcType="INTEGER"/>
+        <result column="order_status" property="orderStatus" jdbcType="INTEGER"/>
+    </resultMap>
+    <resultMap id="oderVO" type="com.hzs.rc.vo.OrderV0">
+        <result column="order_id" property="orderId" jdbcType="INTEGER"/>
+        <result column="user_id" property="userId" jdbcType="INTEGER"/>
+        <result column="order_time" property="orderTime" jdbcType="TIMESTAMP"/>
+        <result column="total_price" property="totalPrice" jdbcType="DECIMAL"/>
+        <result column="address_id" property="addressId" jdbcType="INTEGER"/>
+        <result column="order_status" property="orderStatus" jdbcType="INTEGER"/>
+        <collection property="orderDetailVOList" resultMap="orderDetail"/>
+    </resultMap>
+    <resultMap id="orderDetail" type="com.hzs.rc.vo.OrderDetailVO">
+        <result column="id" property="id" jdbcType="INTEGER"/>
+        <result column="order_id" property="orderId" jdbcType="INTEGER"/>
+        <result column="good_id" property="goodId" jdbcType="INTEGER"/>
+        <result column="quantity" property="quantity" jdbcType="INTEGER"/>
+        <result column="price" property="price" jdbcType="DOUBLE"/>
+        <result column="total_price" property="totalPrice" jdbcType="DECIMAL"/>
+    </resultMap>
+    <insert id="insertOrder" parameterType="com.hzs.rc.entity.Order" useGeneratedKeys="true" keyProperty="orderId">
+        insert into `order` (user_id, order_time,
+        total_price, address_id)
+        values ( #{userId,jdbcType=INTEGER}, #{orderTime,jdbcType=TIMESTAMP},
+        #{totalPrice,jdbcType=DECIMAL}, #{addressId,jdbcType=INTEGER})
+    </insert>
+    <select id="getOrderV0List" resultMap="oderVO">
+        select 0.*,od.*
+        from order o , order_detail od
+        where o.order_id = od.order_id
+        and o.user_id=#{uderId}
+        and o.order_status = 0
+    </select>
+</mapper>
