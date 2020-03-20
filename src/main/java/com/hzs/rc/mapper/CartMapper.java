@@ -2,6 +2,7 @@ package com.hzs.rc.mapper;
 
 import com.hzs.rc.entity.Cart;
 import com.hzs.rc.vo.CartVO;
+import com.hzs.rc.vo.StoreGoodsVO;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -28,12 +29,15 @@ public interface CartMapper {
     //7.购物车内商品数量修改
     void changeNum(@Param(value = "id")Integer id,@Param(value = "num")Integer num);
 
-    //8.获取某用户所有的有效的商品
+    //8.获取某用户所有的有效的商品 不用
     List<CartVO> getAllCartGood(Integer userId);
 
-    //9.获取用户所有有效且已选的购物车内的商品 下单时候使用该数据
+    //9.获取用户所有有效且已选的购物车内的商品 不用
     List<CartVO> getAllCheckedCartGood(Integer userId);
 
     //10.获取已经失效的商品
-    List<CartVO> getAllCartInvalidGood(Integer userId);
+    List<StoreGoodsVO> getAllCartInvalidGood(Integer userId);
+
+    //11.按店铺显示所有的 有效且已选的购物车内的商品 下单时候使用该数据
+    List<StoreGoodsVO> cartSpecialList(Integer userId);
 }

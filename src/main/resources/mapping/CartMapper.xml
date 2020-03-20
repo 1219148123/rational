@@ -23,6 +23,31 @@
             <result column="good_status" property="goodStatus" jdbcType="INTEGER"/>
         </association>
     </resultMap>
+    <resultMap id="storeGoodsMap" type="com.hzs.rc.vo.StoreGoodsVO">
+        <result column="store_id" property="storeId" jdbcType="INTEGER"/>
+        <result column="owner_id" property="ownerId" jdbcType="INTEGER"/>
+        <result column="store_name" property="storeName" jdbcType="VARCHAR"/>
+        <result column="store_photo" property="storePhoto" jdbcType="VARCHAR"/>
+        <result column="store_desc" property="storeDesc" jdbcType="VARCHAR"/>
+        <result column="store_cate" property="storeCate" jdbcType="INTEGER"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="state_code" property="stateCode" jdbcType="VARCHAR"/>
+        <collection property="storeGoods" resultMap="goodsMap"/>
+    </resultMap>
+    <resultMap id="goodsMap" type="com.hzs.rc.vo.GoodsVO">
+        <result column="quantity" property="quantity" jdbcType="INTEGER"/>
+        <result column="good_id" property="goodId" jdbcType="INTEGER"/>
+        <result column="store_id" property="storeId" jdbcType="INTEGER"/>
+        <result column="good_name" property="goodName" jdbcType="VARCHAR"/>
+        <result column="price" property="price" jdbcType="REAL"/>
+        <result column="num" property="num" jdbcType="INTEGER"/>
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+        <result column="category" property="category" jdbcType="INTEGER"/>
+        <result column="img_addr" property="imgAddr" jdbcType="VARCHAR"/>
+        <result column="description" property="description" jdbcType="VARCHAR"/>
+        <result column="priority" property="priority" jdbcType="INTEGER"/>
+        <result column="good_status" property="goodStatus" jdbcType="INTEGER"/>
+    </resultMap>
     <insert id="insertCart" parameterType="com.hzs.rc.entity.Cart" useGeneratedKeys="true" keyProperty="id">
         insert into cart (user_id, good_id,
         quantity, create_time)
@@ -72,12 +97,20 @@
         and goods.good_status=1
         and user_id=#{userId,jdbcType=INTEGER}
     </select>
-    <select id="getAllCartInvalidGood" resultMap="BaseResultMap">
-        select cart.*,goods.*
-        from cart , goods
-        where cart.good_id=goods.good_id
-        and goods.good_status=0
-        and user_id=#{userId,jdbcType=INTEGER}
+    <select id="getAllCartInvalidGood" resultMap="storeGoodsMap">
+        SELECT s.* ,g.*
+        FROM store s ,goods g
+        WHERE s.store_id = g.store_id
+        AND g.good_status = 0
+        AND g.good_id IN (SELECT good_id FROM cart c WHERE c.user_id =#{userId} AND c.checked =1)
+    </select>
+    <select id="cartSpecialList" resultMap="storeGoodsMap">
+        SELECT s.* ,g.*,c.quantity
+        FROM store s ,goods g,cart c
+        WHERE s.store_id = g.store_id
+        AND g.good_id = c.good_id
+        AND g.good_status = 1
+        AND g.good_id IN (SELECT good_id FROM cart c WHERE c.user_id =#{userId} AND c.checked =1)
     </select>
 
 </mapper>

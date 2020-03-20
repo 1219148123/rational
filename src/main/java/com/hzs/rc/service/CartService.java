@@ -2,7 +2,7 @@ package com.hzs.rc.service;
 
 import com.hzs.rc.dto.CartDTO;
 import com.hzs.rc.vo.CartVO;
-import org.apache.ibatis.annotations.Param;
+import com.hzs.rc.vo.StoreGoodsVO;
 
 import java.util.List;
 
@@ -19,7 +19,9 @@ public interface CartService {
 
     List<CartVO> getAllCheckedCartGood(Integer userId);
 
-    List<CartVO> getAllCartInvalidGood(Integer userId);
+    List<StoreGoodsVO> getAllCartInvalidGood(Integer userId);
+
+    List<StoreGoodsVO> cartSpecialList(Integer userId);
 
     void checkGood(Integer id);
 

@@ -5,6 +5,7 @@ import com.hzs.rc.entity.Cart;
 import com.hzs.rc.mapper.CartMapper;
 import com.hzs.rc.service.CartService;
 import com.hzs.rc.vo.CartVO;
+import com.hzs.rc.vo.StoreGoodsVO;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
@@ -41,8 +42,13 @@ public class CartServiceImpl implements CartService {
     }
 
     @Override
-    public List<CartVO> getAllCartInvalidGood(Integer userId) {
+    public List<StoreGoodsVO> getAllCartInvalidGood(Integer userId) {
         return cartMapper.getAllCartInvalidGood(userId);
+    }
+
+    @Override
+    public List<StoreGoodsVO> cartSpecialList(Integer userId) {
+        return cartMapper.cartSpecialList(userId);
     }
 
     @Override

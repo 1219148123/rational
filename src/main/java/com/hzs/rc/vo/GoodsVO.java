@@ -34,4 +34,6 @@ public class GoodsVO {
 
     private Integer goodStatus;
 
+    private Integer quantity;
+
 }

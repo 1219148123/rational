@@ -3,6 +3,7 @@ package com.hzs.rc.controller;
 import com.hzs.rc.dto.CartDTO;
 import com.hzs.rc.service.CartService;
 import com.hzs.rc.vo.CartVO;
+import com.hzs.rc.vo.StoreGoodsVO;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.*;
 
@@ -33,7 +34,7 @@ public class CartController {
     }
     @ApiOperation(value = "获取购物车内的失效商品", notes = "获取购物车内的失效商品")
     @GetMapping("/getAllCartInvalidGood")
-    public List<CartVO> getAllCartInvalidGood(String userId){
+    public List<StoreGoodsVO> getAllCartInvalidGood(String userId){
         return cartService.getAllCartInvalidGood(Integer.valueOf(userId));
     }
 
@@ -77,5 +78,12 @@ public class CartController {
     @DeleteMapping("/flushCart")
     public  void flushCart(String userId) {
         cartService.flushCart(Integer.valueOf(userId));
+    }
+
+
+    @ApiOperation(value = "按店铺获取信息", notes = "按店铺获取信息")
+    @GetMapping("/cartSpecialList")
+    public List<StoreGoodsVO> cartSpecialList(Integer userId) {
+        return cartService.cartSpecialList(userId);
     }
 }
