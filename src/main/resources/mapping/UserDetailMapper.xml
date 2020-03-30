@@ -1,42 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hzs.rc.mapper.UserDetailMapper">
-  <resultMap id="BaseResultMap" type="com.hzs.rc.entity.UserDetail">
-    <result column="id" jdbcType="INTEGER" property="id" />
-    <result column="user_id" jdbcType="INTEGER" property="userId" />
-    <result column="user_name" jdbcType="VARCHAR" property="userName" />
-    <result column="sex" jdbcType="VARCHAR" property="sex" />
-    <result column="user_email" jdbcType="VARCHAR" property="userEmail" />
-    <result column="user_phone" jdbcType="VARCHAR" property="userPhone" />
-    <result column="user_address_id" jdbcType="INTEGER" property="userAddressId" />
-    <result column="user_plan_spent" jdbcType="DOUBLE" property="userPlanSpent" />
-    <result column="user_current_spent" jdbcType="DOUBLE" property="userCurrentSpent" />
-    <result column="user_create_time" jdbcType="TIMESTAMP" property="userCreateTime" />
-  </resultMap>
-  <insert id="insertUserDetail" parameterType="com.hzs.rc.entity.UserDetail">
-    insert into user_detail (id, user_id, user_name, 
-      sex, user_email, user_phone, 
-      user_address_id, user_plan_spent, user_current_spent, 
-      user_create_time)
-    values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{userName,jdbcType=VARCHAR}, 
-      #{sex,jdbcType=VARCHAR}, #{userEmail,jdbcType=VARCHAR}, #{userPhone,jdbcType=VARCHAR}, 
-      #{userAddressId,jdbcType=INTEGER}, #{userPlanSpent,jdbcType=DOUBLE}, #{userCurrentSpent,jdbcType=DOUBLE}, 
-      #{userCreateTime,jdbcType=TIMESTAMP})
-  </insert>
+    <resultMap id="BaseResultMap" type="com.hzs.rc.entity.UserDetail">
+        <result column="id" jdbcType="INTEGER" property="id"/>
+        <result column="user_id" jdbcType="INTEGER" property="userId"/>
+        <result column="user_name" jdbcType="VARCHAR" property="userName"/>
+        <result column="sex" jdbcType="VARCHAR" property="sex"/>
+        <result column="user_email" jdbcType="VARCHAR" property="userEmail"/>
+        <result column="user_phone" jdbcType="VARCHAR" property="userPhone"/>
+        <result column="user_address_id" jdbcType="INTEGER" property="userAddressId"/>
+        <result column="user_plan_spent" jdbcType="DOUBLE" property="userPlanSpent"/>
+        <result column="user_current_spent" jdbcType="DOUBLE" property="userCurrentSpent"/>
+        <result column="user_create_time" jdbcType="TIMESTAMP" property="userCreateTime"/>
+    </resultMap>
+    <insert id="insertUserDetail" parameterType="com.hzs.rc.entity.UserDetail">
+        insert into user_detail (id, user_id, user_name,
+        sex, user_email, user_phone,
+        user_address_id, user_plan_spent, user_current_spent,
+        user_create_time)
+        values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{userName,jdbcType=VARCHAR},
+        #{sex,jdbcType=VARCHAR}, #{userEmail,jdbcType=VARCHAR}, #{userPhone,jdbcType=VARCHAR},
+        #{userAddressId,jdbcType=INTEGER}, #{userPlanSpent,jdbcType=DOUBLE}, #{userCurrentSpent,jdbcType=DOUBLE},
+        #{userCreateTime,jdbcType=TIMESTAMP})
+    </insert>
 
 
-  <insert id="simpleInsertUserDetail" parameterType="com.hzs.rc.entity.UserDetail" useGeneratedKeys="true" keyProperty="id">
-    insert into user_detail (user_id, user_create_time)
-    values (#{userId,jdbcType=INTEGER}, #{userCreateTime,jdbcType=TIMESTAMP})
-  </insert>
-  <update id="setPlantSpent" parameterType="com.hzs.rc.dto.UserDetailDTO">
-    update user_detail
-    set user_plan_spent=#{userPlanSpent}
-    where user_id=#{userId,jdbcType=VARCHAR}
-  </update>
-  <update id="updateUserDetail" parameterType="com.hzs.rc.entity.UserDetail">
-    update user_detail
-    set user_name=#{userName},sex=#{sex},user_email=#{userEmail}, user_phone=#{userPhone}
-    where user_id=#{userId}
-  </update>
+    <insert id="simpleInsertUserDetail" parameterType="com.hzs.rc.entity.UserDetail" useGeneratedKeys="true"
+            keyProperty="id">
+        insert into user_detail (user_id, user_create_time)
+        values (#{userId,jdbcType=INTEGER}, #{userCreateTime,jdbcType=TIMESTAMP})
+    </insert>
+    <update id="setPlantSpent" parameterType="com.hzs.rc.dto.UserDetailDTO">
+        update user_detail
+        set user_plan_spent=#{userPlanSpent}
+        where user_id=#{userId,jdbcType=VARCHAR}
+    </update>
+    <update id="updateUserDetail" parameterType="com.hzs.rc.entity.UserDetail">
+        update user_detail
+        set user_name=#{userName},sex=#{sex},user_email=#{userEmail}, user_phone=#{userPhone}
+        where user_id=#{userId}
+    </update>
+    <select id="getUserDetail" resultType="com.hzs.rc.vo.UserDetailVO">
+        select * from user_detail
+        where user_id=#{userId}
+    </select>
 </mapper>

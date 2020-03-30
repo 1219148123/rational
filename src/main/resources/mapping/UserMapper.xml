@@ -25,5 +25,9 @@
     select user_password from user
     where user_id=#{userId,jdbcType=VARCHAR}
   </select>
+  <select id="login" resultType="com.hzs.rc.entity.User">
+    select * from user
+    where user_account=#{userAccount}
+  </select>
 
 </mapper>

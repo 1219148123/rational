@@ -12,4 +12,8 @@ public interface OrderMapper {
     //查询未结账的订单及详情
     List<OrderV0> getOrderV0List(Integer userId);
     //查询已经结账的订单及详情
+    List<OrderV0> getOrderV0ListPaied(Integer userId);
+
+    //付款
+
 }

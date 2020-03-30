@@ -25,6 +25,21 @@
         <result column="quantity" property="quantity" jdbcType="INTEGER"/>
         <result column="price" property="price" jdbcType="DOUBLE"/>
         <result column="total_price" property="totalPrice" jdbcType="DECIMAL"/>
+        <collection property="goodsVO" resultMap="goodsMap"/>
+    </resultMap>
+    <resultMap id="goodsMap" type="com.hzs.rc.vo.GoodsVO">
+        <result column="quantity" property="quantity" jdbcType="INTEGER"/>
+        <result column="good_id" property="goodId" jdbcType="INTEGER"/>
+        <result column="store_id" property="storeId" jdbcType="INTEGER"/>
+        <result column="good_name" property="goodName" jdbcType="VARCHAR"/>
+        <result column="price" property="price" jdbcType="REAL"/>
+        <result column="num" property="num" jdbcType="INTEGER"/>
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+        <result column="category" property="category" jdbcType="INTEGER"/>
+        <result column="img_addr" property="imgAddr" jdbcType="VARCHAR"/>
+        <result column="description" property="description" jdbcType="VARCHAR"/>
+        <result column="priority" property="priority" jdbcType="INTEGER"/>
+        <result column="good_status" property="goodStatus" jdbcType="INTEGER"/>
     </resultMap>
     <insert id="insertOrder" parameterType="com.hzs.rc.entity.Order" useGeneratedKeys="true" keyProperty="orderId">
         insert into `order` (user_id, order_time,
@@ -33,10 +48,19 @@
         #{totalPrice,jdbcType=DECIMAL}, #{addressId,jdbcType=INTEGER})
     </insert>
     <select id="getOrderV0List" resultMap="oderVO">
-        select 0.*,od.*
-        from order o , order_detail od
+        select o.*,od.*,g.*
+        from `order` o , order_detail od,goods g
         where o.order_id = od.order_id
+        and od.good_id = g.good_id
         and o.user_id=#{uderId}
         and o.order_status = 0
+    </select>
+    <select id="getOrderV0ListPaied" resultMap="oderVO">
+        select o.*,od.*,g.*
+        from `order` o , order_detail od,goods g
+        where o.order_id = od.order_id
+        and od.good_id = g.good_id
+        and o.user_id=#{uderId}
+        and o.order_status = 1
     </select>
 </mapper>

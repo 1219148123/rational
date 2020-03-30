@@ -8,6 +8,7 @@ import com.hzs.rc.mapper.OrderDetailMapper;
 import com.hzs.rc.mapper.OrderMapper;
 import com.hzs.rc.service.OrderService;
 import com.hzs.rc.vo.GoodsVO;
+import com.hzs.rc.vo.OrderV0;
 import com.hzs.rc.vo.StoreGoodsVO;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
@@ -67,5 +68,10 @@ public class OrderServiceImpl implements OrderService {
                 orderDetailMapper.insertOrdertail(orderDetail);
             }
         }
+    }
+
+    @Override
+    public List<OrderV0> getOrderV0List(Integer userId) {
+        return orderMapper.getOrderV0List(userId);
     }
 }

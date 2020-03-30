@@ -34,6 +34,7 @@ public class GoodsVO {
 
     private Integer goodStatus;
 
+    //加入购物车的数量
     private Integer quantity;
 
 }

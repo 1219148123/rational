@@ -5,6 +5,7 @@ import com.hzs.rc.dto.StoreDTO;
 import com.hzs.rc.entity.Store;
 import com.hzs.rc.mapper.StoreMapper;
 import com.hzs.rc.service.StoreService;
+import com.hzs.rc.vo.StoreGoodsVO;
 import com.hzs.rc.vo.StoreVO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -72,6 +73,12 @@ public class StoreServiceImpl implements StoreService {
     @Override
     public StoreVO stogerDetail(Integer id) {
         return storeMapper.storeDetail(id);
+    }
+
+    @Override
+    public List<StoreGoodsVO> getStoreGoods() {
+        List<StoreGoodsVO> storeGoods = storeMapper.getStoreGoods();
+        return storeGoods;
     }
 
     @Transactional(rollbackFor = Exception.class)

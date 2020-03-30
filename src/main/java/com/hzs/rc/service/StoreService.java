@@ -1,6 +1,7 @@
 package com.hzs.rc.service;
 
 import com.hzs.rc.dto.StoreDTO;
+import com.hzs.rc.vo.StoreGoodsVO;
 import com.hzs.rc.vo.StoreVO;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -22,4 +23,7 @@ public interface StoreService {
     public void invalidStore(Integer id);
 
     public StoreVO stogerDetail(Integer id);
+
+    //查看所有的店铺及该店铺下商品 用户
+    List<StoreGoodsVO> getStoreGoods();
 }

@@ -13,7 +13,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import java.util.UUID;
 
 /**
  * @author hanzs
@@ -31,6 +34,34 @@ public class UserController {
     @Resource
     UserDetailService userDetailService;
 
+    @ApiOperation(value = "获取session中的用户", notes = "获取session中的用户")
+    @PostMapping(value = "/getUser")
+    public Object getUser(HttpServletRequest httpServletRequest) {
+        HttpSession session = httpServletRequest.getSession();
+        return session.getAttribute("hzsUser");
+    }
+
+    @ApiOperation(value = "销毁session", notes = "销毁session")
+    @PostMapping(value = "/inLogin")
+    public void inLogin(HttpServletRequest httpServletRequest) {
+        HttpSession session = httpServletRequest.getSession();
+         session.invalidate();
+    }
+
+    @ApiOperation(value = "用户登录", notes = "账户密码登录")
+    @PostMapping(value = "/login")
+    public Object login(@Valid @RequestBody UserDTO userDTO, HttpServletRequest httpServletRequest) {
+        Integer res = userService.login(userDTO);
+        if (res != 0 && res != -1) {
+            String token = UUID.randomUUID().toString();
+            HttpSession session = httpServletRequest.getSession();
+            session.setAttribute("hzsUser", userDetailService.getUserDetail(res));
+            return 1;
+        }
+        return res;
+    }
+
+
     @ApiOperation(value = "添加用户", notes = "根据参数添加用户")
     @PostMapping(value = "/userSignUp")
     public Integer userSignUp(@Valid @RequestBody UserDTO userDTO) {
@@ -46,8 +77,8 @@ public class UserController {
     @ApiOperation(value = "修改用户密码", notes = "填写旧密码新密码修改密码")
     @PostMapping(value = "/updatePassword")
     public Integer setPassword(@Valid @RequestBody PasswordDTO passwordDTO) {
-       int result =  userService.rePassword(passwordDTO);
-       return result;
+        int result = userService.rePassword(passwordDTO);
+        return result;
     }
 
     @ApiOperation(value = "设置本月消费额度", notes = "设置本月消费额度")

@@ -5,6 +5,7 @@ import com.hzs.rc.entity.User;
 import com.hzs.rc.entity.UserDetail;
 import com.hzs.rc.mapper.UserDetailMapper;
 import com.hzs.rc.service.UserDetailService;
+import com.hzs.rc.vo.UserDetailVO;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -22,6 +23,12 @@ import java.util.Date;
 public class UserDetailServiceImpl implements UserDetailService {
     @Resource
     UserDetailMapper userDetailMapper;
+
+    @Override
+    public UserDetailVO getUserDetail(Integer userId) {
+        return userDetailMapper.getUserDetail(userId);
+    }
+
     /**
      *@描述  注册的同时,插入到UserDetail表,插入createTime、userId即可
      *@参数  [userDetail]

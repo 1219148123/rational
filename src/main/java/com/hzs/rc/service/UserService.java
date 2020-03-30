@@ -11,6 +11,8 @@ import com.hzs.rc.entity.User;
  * @version : 1.0
  */
 public interface UserService {
+    Integer login(UserDTO userDTO);
+
     Integer userSignUp(UserDTO userDTO);
 
     Integer rePassword(PasswordDTO passwordDTO);

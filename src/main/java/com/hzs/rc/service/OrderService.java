@@ -1,6 +1,9 @@
 package com.hzs.rc.service;
 
 import com.hzs.rc.dto.OrderDTO;
+import com.hzs.rc.vo.OrderV0;
+
+import java.util.List;
 
 /**
  * <p>接口</p>
@@ -10,4 +13,7 @@ import com.hzs.rc.dto.OrderDTO;
  */
 public interface OrderService {
     void InsertOrder(OrderDTO orderDTO);
+
+    //查询未结账的订单及详情
+    List<OrderV0> getOrderV0List(Integer userId);
 }

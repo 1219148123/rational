@@ -23,4 +23,6 @@ public class OrderDetailVO {
     private Double price;
 
     private BigDecimal totalPrice;
+
+    private GoodsVO goodsVO;
 }

@@ -2,6 +2,7 @@ package com.hzs.rc.controller;
 
 import com.hzs.rc.dto.StoreDTO;
 import com.hzs.rc.service.StoreService;
+import com.hzs.rc.vo.StoreGoodsVO;
 import com.hzs.rc.vo.StoreVO;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -38,8 +39,12 @@ public class StoreController {
         storeService.inserStore(storeDTO,file);
     }
 
-
-    @ApiOperation(value = "获取店铺详情", notes = "店铺详情")
+    @ApiOperation(value = "获取所有店铺及商品", notes = "获取所有店铺及商品")
+    @GetMapping(value = "/getStoreGoodsList")
+    public List<StoreGoodsVO> getStoreGoods() {
+        return storeService.getStoreGoods();
+    }
+    @ApiOperation(value = "获取所有店铺", notes = "所有店铺")
     @GetMapping(value = "/getStoreList")
     public List<StoreVO> getStoreList(String userId){
         return storeService.storeList(Integer.valueOf(userId));

@@ -25,6 +25,20 @@ public class UserServiceImpl implements UserService {
     int flag = 0;
     @Resource
     UserDetailService userDetailService;
+
+    @Override
+    public Integer login(UserDTO userDTO) {
+        User login = new User();
+        BeanUtils.copyProperties(userDTO,login);
+        User user = userMapper.login(login);
+        if (user == null){
+            return 0;
+        }else if(user.getUserPassword().equals(userDTO.getUserPassword())) {
+            return user.getUserId();
+        }
+        return -1;
+    }
+
     /**
      * @描述 用户快速注册,只需要填写账号密码即可注册
      * @参数 [user]

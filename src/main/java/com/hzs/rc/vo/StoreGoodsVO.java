@@ -29,8 +29,6 @@ public class StoreGoodsVO {
 
     private String stateCode;
 
-
-
     private List<GoodsVO> storeGoods;
 
 

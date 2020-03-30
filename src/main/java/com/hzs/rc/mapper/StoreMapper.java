@@ -1,6 +1,7 @@
 package com.hzs.rc.mapper;
 
 import com.hzs.rc.entity.Store;
+import com.hzs.rc.vo.StoreGoodsVO;
 import com.hzs.rc.vo.StoreVO;
 
 import java.util.List;
@@ -17,6 +18,9 @@ public interface StoreMapper {
 
     //查看某个店铺用于修改前的信息查看回显 普通用户
     StoreVO storeDetail(Integer id);
+
+    //查看所有的店铺及该店铺下商品 用户
+    List<StoreGoodsVO> getStoreGoods();
 
     //更新店铺信息 普通用户
     void updateStore(Store store);
