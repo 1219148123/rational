@@ -53,7 +53,6 @@ public class UserController {
     public Object login(@Valid @RequestBody UserDTO userDTO, HttpServletRequest httpServletRequest) {
         Integer res = userService.login(userDTO);
         if (res != 0 && res != -1) {
-            String token = UUID.randomUUID().toString();
             HttpSession session = httpServletRequest.getSession();
             session.setAttribute("hzsUser", userDetailService.getUserDetail(res));
             return 1;
@@ -70,8 +69,10 @@ public class UserController {
 
     @ApiOperation(value = "完善用户信息", notes = "根据参数完善用户信息")
     @PostMapping(value = "/updateUser")
-    public void uerUpdate(@Valid @RequestBody UserDetailDTO userDetailDTO) {
+    public void uerUpdate(@Valid @RequestBody UserDetailDTO userDetailDTO, HttpServletRequest httpServletRequest) {
         userDetailService.updateUserDetail(userDetailDTO);
+        HttpSession session = httpServletRequest.getSession();
+        session.setAttribute("hzsUser", userDetailService.getUserDetail(userDetailDTO.getUserId()));
     }
 
     @ApiOperation(value = "修改用户密码", notes = "填写旧密码新密码修改密码")

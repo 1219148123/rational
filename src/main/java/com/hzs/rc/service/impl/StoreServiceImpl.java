@@ -4,6 +4,7 @@ import com.hzs.rc.controller.StoreController;
 import com.hzs.rc.dto.StoreDTO;
 import com.hzs.rc.entity.Store;
 import com.hzs.rc.mapper.StoreMapper;
+import com.hzs.rc.mapper.UserDetailMapper;
 import com.hzs.rc.service.StoreService;
 import com.hzs.rc.vo.StoreGoodsVO;
 import com.hzs.rc.vo.StoreVO;
@@ -31,7 +32,8 @@ public class StoreServiceImpl implements StoreService {
     private static final Logger LOGGER = LoggerFactory.getLogger(StoreServiceImpl.class);
     @Resource
     StoreMapper storeMapper;
-
+    @Resource
+    UserDetailMapper userDetailMapper;
     @Override
     @Transactional(rollbackFor = Exception.class)
     public void inserStore(StoreDTO storeDTO, MultipartFile file) {
@@ -40,13 +42,15 @@ public class StoreServiceImpl implements StoreService {
         //2.bean属性转移
         BeanUtils.copyProperties(storeDTO, store);
         store.setCreateTime(new Date());
-        store.setOwnerId(1);//TODO 后期改成当前登录用户的id
+       // store.setOwnerId(1);//TODO 后期改成当前登录用户的id
         store.setStateCode("1001");
         //3.插入店铺
         storeMapper.insertStore(store);
         String storePhoto = upload(file, store.getStoreId());
         store.setStorePhoto(storePhoto);
         storeMapper.updatePhoto(store);
+        //4.用户开店转态置为1
+        userDetailMapper.openStore(storeDTO.getOwnerId());
     }
 
     @Override

@@ -37,8 +37,13 @@
     </update>
     <update id="updateUserDetail" parameterType="com.hzs.rc.entity.UserDetail">
         update user_detail
-        set user_name=#{userName},sex=#{sex},user_email=#{userEmail}, user_phone=#{userPhone}
+        set user_name=#{userName},sex=#{sex},user_email=#{userEmail}, user_phone=#{userPhone},user_plan_spent=#{userPlanSpent}
         where user_id=#{userId}
+    </update>
+    <update id="openStore">
+        update user_detail
+        set open_store= 1
+        where user_id=#{userId,jdbcType=VARCHAR}
     </update>
     <select id="getUserDetail" resultType="com.hzs.rc.vo.UserDetailVO">
         select * from user_detail

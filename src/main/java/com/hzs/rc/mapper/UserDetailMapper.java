@@ -14,4 +14,6 @@ public interface UserDetailMapper {
     void setPlantSpent(UserDetailDTO userDetailDTO);
 
     void updateUserDetail(UserDetail userDetail);
+
+    void  openStore(Integer userId);
 }

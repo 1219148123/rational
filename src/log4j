@@ -3,10 +3,19 @@ log4j.rootLogger=info,ServerDailyRollingFile,stdout
 log4j.logger.weblog=INFO, weblog
 log4j.appender.ServerDailyRollingFile=org.apache.log4j.DailyRollingFileAppender
 log4j.appender.ServerDailyRollingFile.DatePattern='.'yyyy-MM-dd
-log4j.appender.ServerDailyRollingFile.File=/Users/xiaocai/IdeaProjects/wmsMobile.log
+log4j.appender.ServerDailyRollingFile.File=C:/Users/48738/Desktop/毕业设计/ration.log
 log4j.appender.ServerDailyRollingFile.layout=org.apache.log4j.PatternLayout
 log4j.appender.ServerDailyRollingFile.layout.ConversionPattern=%d{yyyy-MM-dd HH:mm:ss} [%t] %-5p [%c] - %m%n
 log4j.appender.ServerDailyRollingFile.Append=true
+
+
+log4j.appender.logfile=org.apache.log4j.RollingFileAppender
+log4j.appender.logfile.File=C:/Users/48738/Desktop/毕业设计/ration.log
+log4j.appender.logfile.MaxFileSize=512KB
+log4j.appender.logfile.MaxBackupIndex=3
+log4j.appender.logfile.layout=org.apache.log4j.PatternLayout
+log4j.appender.logfile.layout.ConversionPattern=%d %p [%c] - %m%n
+log4j.appender.file.append = true
 
 #控制台  显示的的方式为控制台普通方式
 log4j.appender.stdout=org.apache.log4j.ConsoleAppender

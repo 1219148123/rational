@@ -1,5 +1,6 @@
 package com.hzs.rc.vo;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
 import java.util.Date;
@@ -21,7 +22,7 @@ public class GoodsVO {
     private Float price;
 
     private Integer num;
-
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date updateTime;
 
     private Integer category;

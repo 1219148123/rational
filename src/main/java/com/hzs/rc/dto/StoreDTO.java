@@ -30,4 +30,7 @@ public class StoreDTO {
     @NotNull(message = "店铺类别,不能为空")
     @ApiModelProperty(value = "店铺类别", example = "", required = true, dataType = "Integer")
     private Integer storeCate;
+
+    @ApiModelProperty(value = "店主id", example = "", required = true, dataType = "Integer")
+    private Integer ownerId;
 }

@@ -21,8 +21,7 @@ public class CartDTO {
     @ApiModelProperty(value = "userId", example = "", required = true, dataType = "Integer")
     private Integer userId;
 
-    @NotNull(message = "商品id不能为空")
-    @ApiModelProperty(value = "goodId", example = "", required = true, dataType = "Integer")
+    @ApiModelProperty(value = "goodId", example = "", required = false, dataType = "Integer")
     private Integer goodId;
 
     @NotNull(message = "商品数量不能为空")

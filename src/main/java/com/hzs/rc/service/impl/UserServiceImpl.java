@@ -32,11 +32,11 @@ public class UserServiceImpl implements UserService {
         BeanUtils.copyProperties(userDTO,login);
         User user = userMapper.login(login);
         if (user == null){
-            return 0;
+            return 0;//账号不存在
         }else if(user.getUserPassword().equals(userDTO.getUserPassword())) {
             return user.getUserId();
         }
-        return -1;
+        return -1;//账号密码匹配失败
     }
 
     /**

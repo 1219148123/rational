@@ -2,6 +2,7 @@ package com.hzs.rc.controller;
 
 import com.hzs.rc.dto.StoreDTO;
 import com.hzs.rc.service.StoreService;
+import com.hzs.rc.service.UserDetailService;
 import com.hzs.rc.vo.StoreGoodsVO;
 import com.hzs.rc.vo.StoreVO;
 import io.swagger.annotations.Api;
@@ -12,6 +13,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.io.File;
 import java.io.IOException;
@@ -30,13 +33,18 @@ import java.util.List;
 public class StoreController {
     @Resource
     StoreService storeService;
+    @Resource
+    UserDetailService userDetailService;
+
     private static final Logger LOGGER = LoggerFactory.getLogger(StoreController.class);
 
     @ApiOperation(value = "添加店铺", notes = "根据参数添加店铺")
     @PostMapping(value = "/addStore")
-    public void addStore(@Valid StoreDTO storeDTO, @RequestParam("file") MultipartFile file) {
+    public void addStore(@Valid StoreDTO storeDTO, @RequestParam("file") MultipartFile file, HttpServletRequest httpServletRequest) {
         LOGGER.info("{}", storeDTO + "-------------" + file.getOriginalFilename());
         storeService.inserStore(storeDTO,file);
+        HttpSession session = httpServletRequest.getSession();
+        session.setAttribute("hzsUser", userDetailService.getUserDetail(storeDTO.getOwnerId()));
     }
 
     @ApiOperation(value = "获取所有店铺及商品", notes = "获取所有店铺及商品")

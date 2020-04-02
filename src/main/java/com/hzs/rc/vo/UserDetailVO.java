@@ -1,5 +1,6 @@
 package com.hzs.rc.vo;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
 import java.util.Date;
@@ -29,7 +30,7 @@ public class UserDetailVO {
     private Double userPlanSpent;
 
     private Double userCurrentSpent;
-
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date userCreateTime;
 
     private Long openStore;
