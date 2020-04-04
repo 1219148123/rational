@@ -18,7 +18,7 @@ public class OrderV0 {
     private Integer orderId;
 
     private Integer userId;
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     private Date orderTime;
 
     private BigDecimal totalPrice;
@@ -28,4 +28,6 @@ public class OrderV0 {
     private Integer orderStatus;
 
     private List<OrderDetailVO> orderDetailVOList;
+
+    private AddressVO addressVO;
 }

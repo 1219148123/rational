@@ -16,6 +16,15 @@
         <result column="total_price" property="totalPrice" jdbcType="DECIMAL"/>
         <result column="address_id" property="addressId" jdbcType="INTEGER"/>
         <result column="order_status" property="orderStatus" jdbcType="INTEGER"/>
+        <association property="addressVO" javaType="com.hzs.rc.vo.AddressVO">
+            <result column="id" jdbcType="INTEGER" property="id" />
+            <result column="province" jdbcType="VARCHAR" property="province" />
+            <result column="city" jdbcType="VARCHAR" property="city" />
+            <result column="county" jdbcType="VARCHAR" property="county" />
+            <result column="spec_addr" jdbcType="VARCHAR" property="specAddr" />
+            <result column="consignee" jdbcType="VARCHAR" property="consignee" />
+            <result column="phone" jdbcType="VARCHAR" property="phone" />
+        </association>
         <collection property="orderDetailVOList" resultMap="orderDetail"/>
     </resultMap>
     <resultMap id="orderDetail" type="com.hzs.rc.vo.OrderDetailVO">
@@ -48,18 +57,20 @@
         #{totalPrice,jdbcType=DECIMAL}, #{addressId,jdbcType=INTEGER})
     </insert>
     <select id="getOrderV0List" resultMap="oderVO">
-        select o.*,od.*,g.*
-        from `order` o , order_detail od,goods g
+        select o.*,od.*,g.*,a.*
+        from `order` o , order_detail od,goods g,address a
         where o.order_id = od.order_id
         and od.good_id = g.good_id
+        and o.address_id = a.id
         and o.user_id=#{uderId}
         and o.order_status = 0
     </select>
     <select id="getOrderV0ListPaied" resultMap="oderVO">
-        select o.*,od.*,g.*
-        from `order` o , order_detail od,goods g
+        select o.*,od.*,g.*,a.*
+        from `order` o , order_detail od,goods g,address a
         where o.order_id = od.order_id
         and od.good_id = g.good_id
+        and o.address_id = a.id
         and o.user_id=#{uderId}
         and o.order_status = 1
     </select>

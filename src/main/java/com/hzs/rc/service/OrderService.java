@@ -16,4 +16,6 @@ public interface OrderService {
 
     //查询未结账的订单及详情
     List<OrderV0> getOrderV0List(Integer userId);
+
+    List<OrderV0> getOrderV0ListPaied(Integer userId);
 }

@@ -28,7 +28,7 @@ import java.util.List;
  * @Date 2020年03月10日
  */
 @RestController
-@RequestMapping("/store")
+@RequestMapping("/sto")
 @Api(value = "店铺模块")
 public class StoreController {
     @Resource
@@ -36,13 +36,37 @@ public class StoreController {
     @Resource
     UserDetailService userDetailService;
 
+    String photo = "";
     private static final Logger LOGGER = LoggerFactory.getLogger(StoreController.class);
 
     @ApiOperation(value = "添加店铺", notes = "根据参数添加店铺")
-    @PostMapping(value = "/addStore")
-    public void addStore(@Valid StoreDTO storeDTO, @RequestParam("file") MultipartFile file, HttpServletRequest httpServletRequest) {
-        LOGGER.info("{}", storeDTO + "-------------" + file.getOriginalFilename());
-        storeService.inserStore(storeDTO,file);
+    @PostMapping(value = "/test")
+    public String test(@RequestParam("file") MultipartFile file) {
+        if (file.isEmpty()) {
+            return "上传失败，请选择文件";
+        }
+        String contentType = file.getContentType();
+        String fileName = file.getOriginalFilename();
+        String filePath = "D://image//store//";
+        File dest = new File(new File(filePath).getAbsolutePath() + "/" + fileName);
+        if (!dest.getParentFile().exists()) {
+            dest.getParentFile().mkdirs();
+        }
+        try {
+            LOGGER.info("{}", dest + "/////");
+            file.transferTo(dest);
+            photo = dest.toString();
+            return "店铺图片上传成功";
+        } catch (IOException e) {
+            LOGGER.error(e.toString(), e);
+        }
+        return "插入失败";
+    }
+
+    @ApiOperation(value = "添加店铺", notes = "根据参数添加店铺")
+    @PostMapping(value = "/add")
+    public void addStore(@RequestBody @Valid StoreDTO storeDTO, HttpServletRequest httpServletRequest) {
+        storeService.inserStore(storeDTO, photo);
         HttpSession session = httpServletRequest.getSession();
         session.setAttribute("hzsUser", userDetailService.getUserDetail(storeDTO.getOwnerId()));
     }
@@ -52,27 +76,30 @@ public class StoreController {
     public List<StoreGoodsVO> getStoreGoods() {
         return storeService.getStoreGoods();
     }
+
     @ApiOperation(value = "获取所有店铺", notes = "所有店铺")
     @GetMapping(value = "/getStoreList")
-    public List<StoreVO> getStoreList(String userId){
+    public List<StoreVO> getStoreList(String userId) {
         return storeService.storeList(Integer.valueOf(userId));
     }
 
     @ApiOperation(value = "获取店铺详情", notes = "店铺详情")
     @GetMapping(value = "/getStore")
-    public StoreVO getStoreDetail(String id){
+    public StoreVO getStoreDetail(String id) {
         return storeService.stogerDetail(Integer.valueOf(id));
     }
 
     @ApiOperation(value = "修改店铺", notes = "修改店铺")
     @PostMapping(value = "/updateStore")
-    public void updateStore(@Valid StoreDTO storeDTO, @RequestParam("file") MultipartFile file){
-        storeService.updateStore(storeDTO,file);
+    public void updateStore(@Valid StoreDTO storeDTO, @RequestParam("file") MultipartFile file) {
+        storeService.updateStore(storeDTO, file);
     }
 
     @ApiOperation(value = "修改置为无效", notes = "修改店铺")
     @DeleteMapping(value = "/deleteStore")
-    public void deleteStore(String id){
+    public void deleteStore(String id) {
         storeService.invalidStore(Integer.valueOf(id));
     }
+
+
 }

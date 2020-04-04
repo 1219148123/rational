@@ -32,8 +32,8 @@ public class AddressController {
 
     @ApiOperation(value = "地址管理", notes = "查询所有地址信息")
     @GetMapping(value = "/addressMng")
-    public List<AddressVO> addressMng() {
-        return addressService.addressManager();
+    public List<AddressVO> addressMng(String userId) {
+        return addressService.addressManager(Integer.valueOf(userId));
     }
 
     @ApiOperation(value = "地址删除", notes = "删除对应地址")

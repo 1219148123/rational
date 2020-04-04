@@ -23,12 +23,19 @@ import java.util.List;
 public class CartServiceImpl implements CartService {
     @Resource
     CartMapper cartMapper;
+
     @Override
     public void insertCart(CartDTO cartDTO) {
         Cart cart = new Cart();
-        BeanUtils.copyProperties(cartDTO,cart);
-        cart.setCreateTime(new Date());
-        cartMapper.insertCart(cart);
+        BeanUtils.copyProperties(cartDTO, cart);
+        CartVO cartVo = cartMapper.getCartVo(cart.getGoodId());
+        if (cartVo == null) {
+            cart.setCreateTime(new Date());
+            cartMapper.insertCart(cart);
+        } else {
+            cartMapper.changeNum(cartVo.getId(), cartVo.getQuantity() + cart.getQuantity());
+        }
+
     }
 
     @Override
@@ -57,6 +64,11 @@ public class CartServiceImpl implements CartService {
     }
 
     @Override
+    public void inCheckGood(Integer id) {
+        cartMapper.inCheckGood(id);
+    }
+
+    @Override
     public void checkAll(Integer userId) {
         cartMapper.checkAll(userId);
     }
@@ -68,7 +80,7 @@ public class CartServiceImpl implements CartService {
 
     @Override
     public void changeNum(Integer id, Integer num) {
-        cartMapper.changeNum(id,num);
+        cartMapper.changeNum(id, num);
     }
 
     @Override

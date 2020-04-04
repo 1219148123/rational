@@ -15,7 +15,7 @@ import java.util.List;
 public interface AddressService {
     public int addAddress(AddressDTO addressDTO);
 
-    public List<AddressVO> addressManager();
+    public List<AddressVO> addressManager(Integer userId);
 
     public int deleteAddress(Integer id);
 

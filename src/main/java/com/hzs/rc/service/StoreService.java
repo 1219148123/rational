@@ -14,7 +14,7 @@ import java.util.List;
  * @version : 1.0
  */
 public interface StoreService {
-    public void inserStore(StoreDTO storeDTO, MultipartFile file);
+    public void inserStore(StoreDTO storeDTO, String photo);
 
     public List<StoreVO> storeList(Integer userId);
 

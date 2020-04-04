@@ -74,6 +74,11 @@
         set quantity =#{num}
         where id=#{id,jdbcType=INTEGER}
     </update>
+    <update id="inCheckGood">
+        update cart
+        set checked = 0
+        where id = #{id,jdbcType=INTEGER}
+    </update>
     <delete id="deleteCartGood">
         delete from cart
         where id = #{id,jdbcType=INTEGER}
@@ -111,6 +116,11 @@
         AND g.good_id = c.good_id
         AND g.good_status = 1
         AND g.good_id IN (SELECT good_id FROM cart c WHERE c.user_id =#{userId} AND c.checked =1)
+    </select>
+    <select id="getCartVo" resultType="com.hzs.rc.vo.CartVO">
+        select c.*
+        from cart c
+        where c.good_id=#{goodId}
     </select>
 
 </mapper>

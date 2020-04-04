@@ -25,6 +25,8 @@ public interface CartService {
 
     void checkGood(Integer id);
 
+    void inCheckGood(Integer id);
+
     void checkAll(Integer userId);
 
     void inCheckAll(Integer userId);

@@ -36,18 +36,16 @@ public class StoreServiceImpl implements StoreService {
     UserDetailMapper userDetailMapper;
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public void inserStore(StoreDTO storeDTO, MultipartFile file) {
+    public void inserStore(StoreDTO storeDTO, String photo) {
         //1.创建Store对象
         Store store = new Store();
         //2.bean属性转移
         BeanUtils.copyProperties(storeDTO, store);
         store.setCreateTime(new Date());
-       // store.setOwnerId(1);//TODO 后期改成当前登录用户的id
         store.setStateCode("1001");
         //3.插入店铺
         storeMapper.insertStore(store);
-        String storePhoto = upload(file, store.getStoreId());
-        store.setStorePhoto(storePhoto);
+        store.setStorePhoto(photo);
         storeMapper.updatePhoto(store);
         //4.用户开店转态置为1
         userDetailMapper.openStore(storeDTO.getOwnerId());
@@ -87,7 +85,6 @@ public class StoreServiceImpl implements StoreService {
 
     @Transactional(rollbackFor = Exception.class)
     public String upload(MultipartFile file, Integer storeId) {
-
         if (file.isEmpty()) {
             return "上传失败，请选择文件";
         }

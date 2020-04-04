@@ -21,12 +21,17 @@ public class OrderController {
     OrderService orderService;
 
     @PostMapping("/insert")
-    public  void insertOrder(@RequestBody OrderDTO orderDTO) {
+    public void insertOrder(@RequestBody OrderDTO orderDTO) {
         orderService.InsertOrder(orderDTO);
     }
 
-    @GetMapping("get")
-    public List<OrderV0> getOrder(String userId){
+    @GetMapping("getInpay")
+    public List<OrderV0> getOrder(String userId) {
         return orderService.getOrderV0List(Integer.valueOf(userId));
+    }
+
+    @GetMapping("getPay")
+    public List<OrderV0> getOrderPaied(String userId) {
+        return orderService.getOrderV0ListPaied(Integer.valueOf(userId));
     }
 }

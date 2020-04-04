@@ -48,9 +48,9 @@ public class AddressServiceImpl implements AddressService {
      *@创建时间  2020/2/18
      */
     @Override
-    public List<AddressVO> addressManager() {
+    public List<AddressVO> addressManager(Integer userId) {
        //Todo 获取当前登录用户userId
-        List<AddressVO> allAddress = addressMapper.getAllAddress(1);
+        List<AddressVO> allAddress = addressMapper.getAllAddress(userId);
         return allAddress;
     }
 
