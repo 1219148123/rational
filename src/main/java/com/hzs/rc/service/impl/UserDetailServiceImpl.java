@@ -70,4 +70,9 @@ public class UserDetailServiceImpl implements UserDetailService {
         BeanUtils.copyProperties(userDetailDTO,userDetail);
         userDetailMapper.updateUserDetail(userDetail);
     }
+
+    @Override
+    public void updateCurSpent(Integer userId, Double userCurrentSpent) {
+        userDetailMapper.updateCurSpent(userId,userCurrentSpent);
+    }
 }

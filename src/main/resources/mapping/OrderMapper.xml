@@ -56,6 +56,11 @@
         values ( #{userId,jdbcType=INTEGER}, #{orderTime,jdbcType=TIMESTAMP},
         #{totalPrice,jdbcType=DECIMAL}, #{addressId,jdbcType=INTEGER})
     </insert>
+    <update id="updatePayStatus">
+        update `order`
+        set order_status = 1
+        where order_id = #{orderId}
+    </update>
     <select id="getOrderV0List" resultMap="oderVO">
         select o.*,od.*,g.*,a.*
         from `order` o , order_detail od,goods g,address a

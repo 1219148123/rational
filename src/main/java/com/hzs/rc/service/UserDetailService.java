@@ -18,4 +18,6 @@ public interface UserDetailService {
     void setUserPlantSpent(UserDetailDTO userDetailDTO);
 
     void updateUserDetail(UserDetailDTO userDetailDTO);
+
+    void updateCurSpent(Integer userId,Double userCurrentSpent);
 }

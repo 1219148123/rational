@@ -3,6 +3,8 @@ package com.hzs.rc.mapper;
 import com.hzs.rc.dto.UserDetailDTO;
 import com.hzs.rc.entity.UserDetail;
 import com.hzs.rc.vo.UserDetailVO;
+import io.swagger.models.auth.In;
+import org.apache.ibatis.annotations.Param;
 
 public interface UserDetailMapper {
     int insertUserDetail(UserDetail record);
@@ -16,4 +18,6 @@ public interface UserDetailMapper {
     void updateUserDetail(UserDetail userDetail);
 
     void  openStore(Integer userId);
+
+    void updateCurSpent(@Param(value = "userId")Integer userId, @Param(value = "spent")Double spent);
 }

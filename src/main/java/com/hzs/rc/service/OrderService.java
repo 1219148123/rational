@@ -18,4 +18,6 @@ public interface OrderService {
     List<OrderV0> getOrderV0List(Integer userId);
 
     List<OrderV0> getOrderV0ListPaied(Integer userId);
+
+    void updatePayStatus(Integer orderId,Integer user,Double spent);
 }

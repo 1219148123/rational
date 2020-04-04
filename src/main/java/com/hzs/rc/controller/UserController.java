@@ -7,10 +7,8 @@ import com.hzs.rc.service.UserDetailService;
 import com.hzs.rc.service.UserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.apache.ibatis.annotations.Param;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -80,6 +78,14 @@ public class UserController {
     public Integer setPassword(@Valid @RequestBody PasswordDTO passwordDTO) {
         int result = userService.rePassword(passwordDTO);
         return result;
+    }
+
+    @ApiOperation(value = "修改用户本月花费", notes = "")
+    @PostMapping(value = "/updateSpent")
+    public void updateSpent(@RequestParam("userId") String userId,@RequestParam("spent") Double spent, HttpServletRequest httpServletRequest) {
+         userDetailService.updateCurSpent(Integer.valueOf(userId),spent);
+        HttpSession session = httpServletRequest.getSession();
+        session.setAttribute("hzsUser", userDetailService.getUserDetail(Integer.valueOf(userId)));
     }
 
     @ApiOperation(value = "设置本月消费额度", notes = "设置本月消费额度")

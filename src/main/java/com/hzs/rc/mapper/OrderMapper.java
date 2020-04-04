@@ -15,5 +15,5 @@ public interface OrderMapper {
     List<OrderV0> getOrderV0ListPaied(Integer userId);
 
     //付款
-
+    void updatePayStatus(Integer orderId);
 }

@@ -45,6 +45,11 @@
         set open_store= 1
         where user_id=#{userId,jdbcType=VARCHAR}
     </update>
+    <update id="updateCurSpent">
+        update user_detail
+        set user_current_spent =#{spent}
+        where user_id=#{userId,jdbcType=VARCHAR}
+    </update>
     <select id="getUserDetail" resultType="com.hzs.rc.vo.UserDetailVO">
         select * from user_detail
         where user_id=#{userId}

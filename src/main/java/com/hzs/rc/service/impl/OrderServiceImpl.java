@@ -6,6 +6,7 @@ import com.hzs.rc.entity.OrderDetail;
 import com.hzs.rc.mapper.CartMapper;
 import com.hzs.rc.mapper.OrderDetailMapper;
 import com.hzs.rc.mapper.OrderMapper;
+import com.hzs.rc.mapper.UserDetailMapper;
 import com.hzs.rc.service.OrderService;
 import com.hzs.rc.vo.CartVO;
 import com.hzs.rc.vo.GoodsVO;
@@ -33,9 +34,11 @@ public class OrderServiceImpl implements OrderService {
 
     @Resource
     CartMapper cartMapper;
-
+    @Resource
+    UserDetailMapper userDetailMapper;
     @Resource
     OrderDetailMapper orderDetailMapper;
+
     @Override
     @Transactional
     public void InsertOrder(OrderDTO orderDTO) {
@@ -85,5 +88,14 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public List<OrderV0> getOrderV0ListPaied(Integer userId) {
         return orderMapper.getOrderV0ListPaied(userId);
+    }
+
+    @Transactional
+    @Override
+    public void updatePayStatus(Integer orderId, Integer userId, Double spent) {
+        //修改消费数额
+        userDetailMapper.updateCurSpent(userId,spent);
+        //订单状态修改
+        orderMapper.updatePayStatus(orderId);
     }
 }
