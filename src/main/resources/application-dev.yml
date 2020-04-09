@@ -26,3 +26,11 @@ mybatis:
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
     map-underscore-to-camel-case: true
+
+aliyun:
+  endpoint: oss-cn-beijing.aliyuncs.com
+  accessKeyId: LTAI4FsdA4yyr4DEJPHnasoY
+  accessKeySecret: BZqg8ZanUovrxK5NkPEz3GY0zhS7ZP
+  bucketName: hzsfile
+  urlPrefix: hzsfile.oss-cn-beijing.aliyuncs.com
+
