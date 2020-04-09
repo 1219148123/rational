@@ -12,7 +12,7 @@ public interface CartMapper {
     //1.1商品添加到购物车 需要三个主要属性  哪个用户 哪个商品  商品数量
     int insertCart(Cart record);
     //1.2通过商品id查询购物车中的商品是否存在
-    CartVO getCartVo(Integer goodId);
+    CartVO getCartVo(@Param(value = "goodId")Integer goodId,@Param(value = "userId")Integer userId);
     //2.购物车商品的删除
     void deleteCartGood(Integer id);
 

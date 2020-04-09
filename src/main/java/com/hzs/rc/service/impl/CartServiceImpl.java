@@ -28,7 +28,7 @@ public class CartServiceImpl implements CartService {
     public void insertCart(CartDTO cartDTO) {
         Cart cart = new Cart();
         BeanUtils.copyProperties(cartDTO, cart);
-        CartVO cartVo = cartMapper.getCartVo(cart.getGoodId());
+        CartVO cartVo = cartMapper.getCartVo(cart.getGoodId(),cart.getUserId());
         if (cartVo == null) {
             cart.setCreateTime(new Date());
             cartMapper.insertCart(cart);

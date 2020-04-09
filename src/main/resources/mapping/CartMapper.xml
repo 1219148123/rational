@@ -121,6 +121,7 @@
         select c.*
         from cart c
         where c.good_id=#{goodId}
+        and c.user_id=#{userId}
     </select>
 
 </mapper>
