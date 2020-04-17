@@ -34,3 +34,11 @@ aliyun:
   bucketName: hzsfile
   urlPrefix: hzsfile.oss-cn-beijing.aliyuncs.com
 
+logging:
+  file: hzs.log
+  level:
+    root: info
+  life:
+      hzs:
+        rc:
+          mapper: debug
