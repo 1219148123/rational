@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hzs.rc.mapper.DiscussMapper">
+    <resultMap id="BaseResultMap" type="com.hzs.rc.entity.Discuss">
+        <result column="id" property="id" jdbcType="INTEGER"/>
+        <result column="title" property="title" jdbcType="VARCHAR"/>
+        <result column="tag" property="tag" jdbcType="VARCHAR"/>
+        <result column="author" property="author" jdbcType="INTEGER"/>
+        <result column="gmt_create" property="gmtCreate" jdbcType="TIMESTAMP"/>
+        <result column="gmt_modified" property="gmtModified" jdbcType="TIMESTAMP"/>
+        <result column="like_count" property="likeCount" jdbcType="INTEGER"/>
+        <result column="comment_count" property="commentCount" jdbcType="INTEGER"/>
+        <result column="view_count" property="viewCount" jdbcType="INTEGER"/>
+        <result column="state_code" property="stateCode" jdbcType="VARCHAR"/>
+    </resultMap>
+    <resultMap id="ResultMapWithBLOBs" type="com.hzs.rc.entity.Discuss" extends="BaseResultMap">
+        <result column="description" property="description" jdbcType="LONGVARCHAR"/>
+    </resultMap>
+    <sql id="Blob_Column_List">
+        description
+    </sql>
+    <resultMap id="DetailMap" type="com.hzs.rc.vo.DiscussVO">
+        <result column="id" property="id" jdbcType="INTEGER"/>
+        <result column="title" property="title" jdbcType="VARCHAR"/>
+        <result column="tag" property="tag" jdbcType="VARCHAR"/>
+        <result column="gmt_create" property="gmtCreate" jdbcType="TIMESTAMP"/>
+        <result column="gmt_modified" property="gmtModified" jdbcType="TIMESTAMP"/>
+        <result column="like_count" property="likeCount" jdbcType="INTEGER"/>
+        <result column="comment_count" property="commentCount" jdbcType="INTEGER"/>
+        <result column="view_count" property="viewCount" jdbcType="INTEGER"/>
+        <result column="state_code" property="stateCode" jdbcType="VARCHAR"/>
+        <result column="description" property="description" jdbcType="VARCHAR"/>
+        <association property="userDetail" javaType="com.hzs.rc.entity.UserDetail">
+            <result column="id" jdbcType="INTEGER" property="id"/>
+            <result column="user_id" jdbcType="INTEGER" property="userId"/>
+            <result column="user_name" jdbcType="VARCHAR" property="userName"/>
+            <result column="sex" jdbcType="VARCHAR" property="sex"/>
+            <result column="user_email" jdbcType="VARCHAR" property="userEmail"/>
+            <result column="user_phone" jdbcType="VARCHAR" property="userPhone"/>
+            <result column="user_address_id" jdbcType="INTEGER" property="userAddressId"/>
+            <result column="user_plan_spent" jdbcType="DOUBLE" property="userPlanSpent"/>
+            <result column="user_current_spent" jdbcType="DOUBLE" property="userCurrentSpent"/>
+            <result column="user_create_time" jdbcType="TIMESTAMP" property="userCreateTime"/>
+        </association>
+    </resultMap>
+    <resultMap id="ResultMapWithBLOBs1" type="com.hzs.rc.entity.Discuss" extends="DetailMap">
+        <result column="description" property="description" jdbcType="LONGVARCHAR"/>
+    </resultMap>
+    <sql id="Blob_Column_List1">
+        description
+    </sql>
+    <insert id="insert" parameterType="com.hzs.rc.entity.Discuss">
+        insert into discuss ( title, tag,
+        author, gmt_create,description)
+        values (#{title,jdbcType=VARCHAR}, #{tag,jdbcType=VARCHAR},
+        #{author,jdbcType=INTEGER}, #{gmtCreate,jdbcType=TIMESTAMP},
+        #{description,jdbcType=LONGVARCHAR})
+    </insert>
+    <update id="update" parameterType="com.hzs.rc.entity.Discuss">
+        update discuss
+        <set>
+            <if test="title !=null and title != ''">
+                title = #{title},
+            </if>
+            <if test="tag !=null and tag != ''">
+                tag = #{tag},
+            </if>
+            <if test="description !=null and description != ''">
+                description = #{description},
+            </if>
+            <if test="likeCount !=null and likeCount != ''">
+                like_count = like_count+1,
+            </if>
+            <if test="commentCount !=null and commentCount != ''">
+                comment_count = comment_count+1,
+            </if>
+            <if test="viewCount !=null and viewCount != ''">
+                view_count = view_count+#{viewCount},
+            </if>
+            <if test="stateCode !=null and stateCode != ''">
+                state_code = #{stateCode},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+    <update id="updateTime">
+        update discuss
+        set `gmt_modified`=#{gmtModified}
+        where id = #{id}
+    </update>
+    <delete id="delete">
+        delete from discuss
+        where id = #{id}
+    </delete>
+    <select id="selectDiscuss" resultMap="DetailMap" >
+        select d.*,u.*
+        from discuss d ,user_detail u
+        where d.author = u.user_id
+        and d.id =#{id}
+    </select>
+    <select id="discussMng" resultMap="DetailMap">
+        select d.*,u.*
+        from discuss d ,user_detail u
+        where d.author = u.user_id
+    </select>
+</mapper>
