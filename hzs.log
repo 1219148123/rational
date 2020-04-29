@@ -1,52 +1,26 @@
-2020-04-17 10:46:24.452  INFO 8868 --- [main] c.hzs.rc.RationalConsumptionApplication  : Starting RationalConsumptionApplication on DESKTOP-8NN5IVC with PID 8868 (started by 48738 in C:\Users\48738\Desktop\毕业设计\rational)
-2020-04-17 10:46:24.497  INFO 8868 --- [main] c.hzs.rc.RationalConsumptionApplication  : The following profiles are active: dev
-2020-04-17 10:46:27.634  INFO 8868 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2020-04-17 10:46:27.724 ERROR 8868 --- [main] o.a.catalina.core.AprLifecycleListener   : An incompatible version [1.2.8] of the APR based Apache Tomcat Native library is installed, while Tomcat requires version [1.2.14]
-2020-04-17 10:46:28.358 ERROR 8868 --- [main] o.a.catalina.core.AprLifecycleListener   : An incompatible version [1.2.8] of the APR based Apache Tomcat Native library is installed, while Tomcat requires version [1.2.14]
-2020-04-17 10:46:28.457  INFO 8868 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 9898 (http)
-2020-04-17 10:46:28.475 ERROR 8868 --- [main] o.a.catalina.core.AprLifecycleListener   : An incompatible version [1.2.8] of the APR based Apache Tomcat Native library is installed, while Tomcat requires version [1.2.14]
-2020-04-17 10:46:28.475  INFO 8868 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2020-04-17 10:46:28.475  INFO 8868 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.29]
-2020-04-17 10:46:28.651  INFO 8868 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2020-04-17 10:46:28.651  INFO 8868 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 4031 ms
-2020-04-17 10:46:30.808  INFO 8868 --- [main] pertySourcedRequestMappingHandlerMapping : Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
-2020-04-17 10:46:30.927  INFO 8868 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
-2020-04-17 10:46:31.140  INFO 8868 --- [main] d.s.w.p.DocumentationPluginsBootstrapper : Context refreshed
-2020-04-17 10:46:31.172  INFO 8868 --- [main] d.s.w.p.DocumentationPluginsBootstrapper : Found 1 custom documentation plugin(s)
-2020-04-17 10:46:31.239  INFO 8868 --- [main] s.d.s.w.s.ApiListingReferenceScanner     : Scanning for api listing references
-2020-04-17 10:46:31.686  INFO 8868 --- [main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: deleteUsingDELETE_1
-2020-04-17 10:46:31.698  WARN 8868 --- [main] s.d.s.w.r.p.ParameterDataTypeReader      : Trying to infer dataType org.springframework.web.multipart.MultipartFile[]
-2020-04-17 10:46:31.715  WARN 8868 --- [main] s.d.s.w.r.p.ParameterDataTypeReader      : Trying to infer dataType org.springframework.web.multipart.MultipartFile[]
-2020-04-17 10:46:31.888  INFO 8868 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 9898 (http) with context path ''
-2020-04-17 10:46:31.888  INFO 8868 --- [main] c.hzs.rc.RationalConsumptionApplication  : Started RationalConsumptionApplication in 8.413 seconds (JVM running for 9.224)
-2020-04-17 10:46:51.008  INFO 8868 --- [http-nio-9898-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2020-04-17 10:46:51.009  INFO 8868 --- [http-nio-9898-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2020-04-17 10:46:51.031  INFO 8868 --- [http-nio-9898-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 22 ms
-2020-04-17 10:47:00.123  INFO 8868 --- [http-nio-9898-exec-9] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2020-04-17 10:47:00.372  INFO 8868 --- [http-nio-9898-exec-9] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2020-04-17 10:47:44.957  INFO 5468 --- [main] c.hzs.rc.RationalConsumptionApplication  : Starting RationalConsumptionApplication on DESKTOP-8NN5IVC with PID 5468 (started by 48738 in C:\Users\48738\Desktop\毕业设计\rational)
-2020-04-17 10:47:44.958  INFO 5468 --- [main] c.hzs.rc.RationalConsumptionApplication  : The following profiles are active: dev
-2020-04-17 10:47:48.208  INFO 5468 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2020-04-17 10:47:48.304 ERROR 5468 --- [main] o.a.catalina.core.AprLifecycleListener   : An incompatible version [1.2.8] of the APR based Apache Tomcat Native library is installed, while Tomcat requires version [1.2.14]
-2020-04-17 10:47:49.096 ERROR 5468 --- [main] o.a.catalina.core.AprLifecycleListener   : An incompatible version [1.2.8] of the APR based Apache Tomcat Native library is installed, while Tomcat requires version [1.2.14]
-2020-04-17 10:47:49.266  INFO 5468 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 9898 (http)
-2020-04-17 10:47:49.285 ERROR 5468 --- [main] o.a.catalina.core.AprLifecycleListener   : An incompatible version [1.2.8] of the APR based Apache Tomcat Native library is installed, while Tomcat requires version [1.2.14]
-2020-04-17 10:47:49.285  INFO 5468 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2020-04-17 10:47:49.291  INFO 5468 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.29]
-2020-04-17 10:47:49.468  INFO 5468 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2020-04-17 10:47:49.468  INFO 5468 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 4352 ms
-2020-04-17 10:47:52.316  INFO 5468 --- [main] pertySourcedRequestMappingHandlerMapping : Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
-2020-04-17 10:47:52.465  INFO 5468 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
-2020-04-17 10:47:52.713  INFO 5468 --- [main] d.s.w.p.DocumentationPluginsBootstrapper : Context refreshed
-2020-04-17 10:47:52.745  INFO 5468 --- [main] d.s.w.p.DocumentationPluginsBootstrapper : Found 1 custom documentation plugin(s)
-2020-04-17 10:47:52.856  INFO 5468 --- [main] s.d.s.w.s.ApiListingReferenceScanner     : Scanning for api listing references
-2020-04-17 10:47:53.433  INFO 5468 --- [main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: deleteUsingDELETE_1
-2020-04-17 10:47:53.446  WARN 5468 --- [main] s.d.s.w.r.p.ParameterDataTypeReader      : Trying to infer dataType org.springframework.web.multipart.MultipartFile[]
-2020-04-17 10:47:53.467  WARN 5468 --- [main] s.d.s.w.r.p.ParameterDataTypeReader      : Trying to infer dataType org.springframework.web.multipart.MultipartFile[]
-2020-04-17 10:47:53.666  INFO 5468 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 9898 (http) with context path ''
-2020-04-17 10:47:53.677  INFO 5468 --- [main] c.hzs.rc.RationalConsumptionApplication  : Started RationalConsumptionApplication in 9.843 seconds (JVM running for 10.902)
-2020-04-17 10:48:01.867  INFO 5468 --- [http-nio-9898-exec-10] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2020-04-17 10:48:01.868  INFO 5468 --- [http-nio-9898-exec-10] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2020-04-17 10:48:01.882  INFO 5468 --- [http-nio-9898-exec-10] o.s.web.servlet.DispatcherServlet        : Completed initialization in 14 ms
-2020-04-17 10:48:01.985  INFO 5468 --- [http-nio-9898-exec-10] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2020-04-17 10:48:02.478  INFO 5468 --- [http-nio-9898-exec-10] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2020-04-20 20:01:30.174  INFO 14272 --- [main] c.hzs.rc.RationalConsumptionApplication  : Starting RationalConsumptionApplication on DESKTOP-8NN5IVC with PID 14272 (started by 48738 in C:\Users\48738\Desktop\毕业设计\rational)
+2020-04-20 20:01:30.250  INFO 14272 --- [main] c.hzs.rc.RationalConsumptionApplication  : The following profiles are active: dev
+2020-04-20 20:01:33.854  INFO 14272 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-04-20 20:01:33.942 ERROR 14272 --- [main] o.a.catalina.core.AprLifecycleListener   : An incompatible version [1.2.8] of the APR based Apache Tomcat Native library is installed, while Tomcat requires version [1.2.14]
+2020-04-20 20:01:35.310 ERROR 14272 --- [main] o.a.catalina.core.AprLifecycleListener   : An incompatible version [1.2.8] of the APR based Apache Tomcat Native library is installed, while Tomcat requires version [1.2.14]
+2020-04-20 20:01:35.676  INFO 14272 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 9898 (http)
+2020-04-20 20:01:35.698 ERROR 14272 --- [main] o.a.catalina.core.AprLifecycleListener   : An incompatible version [1.2.8] of the APR based Apache Tomcat Native library is installed, while Tomcat requires version [1.2.14]
+2020-04-20 20:01:35.699  INFO 14272 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2020-04-20 20:01:35.700  INFO 14272 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.29]
+2020-04-20 20:01:35.924  INFO 14272 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2020-04-20 20:01:35.925  INFO 14272 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 5466 ms
+2020-04-20 20:01:39.085  INFO 14272 --- [main] pertySourcedRequestMappingHandlerMapping : Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2020-04-20 20:01:39.216  INFO 14272 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2020-04-20 20:01:39.484  INFO 14272 --- [main] d.s.w.p.DocumentationPluginsBootstrapper : Context refreshed
+2020-04-20 20:01:39.527  INFO 14272 --- [main] d.s.w.p.DocumentationPluginsBootstrapper : Found 1 custom documentation plugin(s)
+2020-04-20 20:01:39.606  INFO 14272 --- [main] s.d.s.w.s.ApiListingReferenceScanner     : Scanning for api listing references
+2020-04-20 20:01:40.159  INFO 14272 --- [main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: deleteUsingDELETE_1
+2020-04-20 20:01:40.169  WARN 14272 --- [main] s.d.s.w.r.p.ParameterDataTypeReader      : Trying to infer dataType org.springframework.web.multipart.MultipartFile[]
+2020-04-20 20:01:40.186  WARN 14272 --- [main] s.d.s.w.r.p.ParameterDataTypeReader      : Trying to infer dataType org.springframework.web.multipart.MultipartFile[]
+2020-04-20 20:01:40.386  INFO 14272 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 9898 (http) with context path ''
+2020-04-20 20:01:40.392  INFO 14272 --- [main] c.hzs.rc.RationalConsumptionApplication  : Started RationalConsumptionApplication in 11.619 seconds (JVM running for 13.21)
+2020-04-20 20:01:51.611  INFO 14272 --- [http-nio-9898-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-04-20 20:01:51.632  INFO 14272 --- [http-nio-9898-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2020-04-20 20:01:51.703  INFO 14272 --- [http-nio-9898-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 57 ms
+2020-04-20 20:01:59.555  INFO 14272 --- [http-nio-9898-exec-6] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2020-04-20 20:01:59.891  INFO 14272 --- [http-nio-9898-exec-6] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.

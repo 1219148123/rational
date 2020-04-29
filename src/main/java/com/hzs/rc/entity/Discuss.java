@@ -11,6 +11,8 @@ public class Discuss {
 
     private String tag;
 
+    private Integer author;
+
     private Date gmtCreate;
 
     private Date gmtModified;
@@ -21,5 +23,8 @@ public class Discuss {
 
     private Integer viewCount;
 
+    private String stateCode;
+
     private String description;
+
 }

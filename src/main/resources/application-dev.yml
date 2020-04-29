@@ -6,7 +6,7 @@ spring:
     type: com.zaxxer.hikari.HikariDataSource
     username: root
     password: hzs121914
-    url: jdbc:mysql://localhost:3306/hzsShopping?useUnicode=true&characterEncoding=utf-8&useSSL=true&serverTimezone=Asia/Shanghai
+    url: jdbc:mysql://localhost:3306/hzsShopping?useUnicode=true&characterEncoding=utf-8&useSSL=true&serverTimezone=Asia/Shanghai&zeroDateTimeBehavior=convertToNull
     driver-class-name: com.mysql.cj.jdbc.Driver
     hikari:
       minimum-idle: 5 #最小连接数
@@ -29,16 +29,16 @@ mybatis:
 
 aliyun:
   endpoint: oss-cn-beijing.aliyuncs.com
-  accessKeyId: ******
-  accessKeySecret: *******
-  bucketName: ((((*****))))
+  accessKeyId: LTAI4FsdA4yyr4DEJPHnasoY
+  accessKeySecret: BZqg8ZanUovrxK5NkPEz3GY0zhS7ZP
+  bucketName: hzsfile
   urlPrefix: hzsfile.oss-cn-beijing.aliyuncs.com
 
-logging:
-  file: hzs.log
-  level:
-    root: info
-  life:
-      hzs:
-        rc:
-          mapper: debug
+#logging:
+#  file: hzs.log
+#  level:
+#    root: info
+#  life:
+#      hzs:
+#        rc:
+#          mapper: debug
