@@ -2,6 +2,7 @@ package com.hzs.rc.controller;
 
 import com.hzs.rc.dto.DiscussDTO;
 import com.hzs.rc.service.DiscussService;
+import com.hzs.rc.vo.DiscussPaginationVO;
 import com.hzs.rc.vo.DiscussVO;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.*;
@@ -33,9 +34,16 @@ public class DiscussController {
         return discussService.selectDiscuss(id);
     }
 
-    @ApiOperation(value = "修改", notes = "帖子修改")
+    @ApiOperation(value = "修改", notes = "帖子修改,点赞+1也是次接口")
     @PostMapping("/update")
     public void updateDiscuss(@Valid @RequestBody DiscussDTO discussDTO) {
         discussService.update(discussDTO);
+    }
+
+    @ApiOperation(value = "获取列表", notes = "帖子列表")
+    @PostMapping("/list")
+    public DiscussPaginationVO DiscussList(@RequestParam(name = "page", defaultValue = "1") Integer page, @RequestParam(name = "size", defaultValue = "5") Integer size) {
+        DiscussPaginationVO discussPaginationVO = discussService.discussMng(page, size);
+        return discussPaginationVO;
     }
 }
