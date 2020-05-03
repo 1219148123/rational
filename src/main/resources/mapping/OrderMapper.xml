@@ -28,12 +28,12 @@
         <collection property="orderDetailVOList" resultMap="orderDetail"/>
     </resultMap>
     <resultMap id="orderDetail" type="com.hzs.rc.vo.OrderDetailVO">
-        <result column="id" property="id" jdbcType="INTEGER"/>
-        <result column="order_id" property="orderId" jdbcType="INTEGER"/>
-        <result column="good_id" property="goodId" jdbcType="INTEGER"/>
-        <result column="quantity" property="quantity" jdbcType="INTEGER"/>
-        <result column="price" property="price" jdbcType="DOUBLE"/>
-        <result column="total_price" property="totalPrice" jdbcType="DECIMAL"/>
+        <result column="od_id" property="id" jdbcType="INTEGER"/>
+        <result column="od_order_id" property="orderId" jdbcType="INTEGER"/>
+        <result column="od_good_id" property="goodId" jdbcType="INTEGER"/>
+        <result column="od_quantity" property="quantity" jdbcType="INTEGER"/>
+        <result column="od_price" property="price" jdbcType="DOUBLE"/>
+        <result column="od_total_price" property="totalPrice" jdbcType="DECIMAL"/>
         <collection property="goodsVO" resultMap="goodsMap"/>
     </resultMap>
     <resultMap id="goodsMap" type="com.hzs.rc.vo.GoodsVO">
@@ -62,7 +62,7 @@
         where order_id = #{orderId}
     </update>
     <select id="getOrderV0List" resultMap="oderVO">
-        select o.*,od.*,g.*,a.*
+        select  o.*,od.id od_id,od.order_id od_order_id,od.good_id od_good_id,od.quantity od_quantity,od.price od_price,od.total_price od_total_price,g.*,a.*
         from `order` o , order_detail od,goods g,address a
         where o.order_id = od.order_id
         and od.good_id = g.good_id
@@ -71,7 +71,7 @@
         and o.order_status = 0
     </select>
     <select id="getOrderV0ListPaied" resultMap="oderVO">
-        select o.*,od.*,g.*,a.*
+        select  o.*,od.id od_id,od.order_id od_order_id,od.good_id od_good_id,od.quantity od_quantity,od.price od_price,od.total_price od_total_price,g.*,a.*
         from `order` o , order_detail od,goods g,address a
         where o.order_id = od.order_id
         and od.good_id = g.good_id
