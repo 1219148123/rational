@@ -22,19 +22,8 @@ public class DiscussPaginationVO {
     private Integer totalPage;//总页数
     private List<Integer> pages = new ArrayList<>(); //相关页数
 
-    public void setPagintaion(Integer totalCount, Integer page, Integer size) {
-        if (totalCount % size == 0) {
-            this.totalPage = totalCount / size;
-        } else {
-            this.totalPage = totalCount / size - 1;
-        }
-
-        if (page < 1) {
-            page = 1;
-        }
-        if (page > totalPage) {
-            page = totalPage;
-        }
+    public void setPagintaion(Integer totalPage, Integer page, Integer size) {
+       this.totalPage = totalPage;
         this.page = page;
         pages.add(page);
         for (int i = 1; i <= 3; i++) {

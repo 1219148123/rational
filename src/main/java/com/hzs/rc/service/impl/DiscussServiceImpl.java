@@ -64,23 +64,28 @@ public class DiscussServiceImpl implements DiscussService {
 
     @Override
     public DiscussPaginationVO discussMng(Integer page, Integer size) {
-        int totalCount = discussMapper.getCount();
-        int totalPage = 0;
-        if (totalCount % size == 0) {
-            totalPage = totalCount / size;
-        } else {
-            totalPage = totalCount / size - 1;
+        int totalCount = discussMapper.getCount();//获取所有数据库记录
+        int totalPage = 0;//计算总页数
+        if (totalCount >= size) {
+            if (totalCount % size == 0) {
+                totalPage = totalCount / size;
+            } else {
+                totalPage = totalCount / size + 1;
+            }
+        }else {
+            totalPage = 1;
         }
+        //规范输入的页数 小于1 为1 大于最大页数为最大页数
         if (page < 1) {
             page = 1;
         }
         if (page > totalPage) {
             page = totalPage;
         }
-        int offset = size * (page -1);
+        int offset = size * (page -1);//计算偏移量
         DiscussPaginationVO discussPaginationVO = new DiscussPaginationVO();
-        discussPaginationVO.setPagintaion(totalCount,page,size);
-        List<DiscussVO> discussVOS = discussMapper.discussMng(offset, size);
+        discussPaginationVO.setPagintaion(totalPage,page,size);//相关前天展示属性赋值
+        List<DiscussVO> discussVOS = discussMapper.discussMng(offset, size);//获取数据
         discussPaginationVO.setDiscussVOList(discussVOS);
         return discussPaginationVO;
     }

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hzs.rc.mapper.CommentMapper">
+    <resultMap id="BaseResultMap" type="com.hzs.rc.entity.Comment">
+        <result column="id" property="id" jdbcType="INTEGER"/>
+        <result column="parent_id" property="parentId" jdbcType="INTEGER"/>
+        <result column="content" property="content" jdbcType="VARCHAR"/>
+        <result column="type" property="type" jdbcType="INTEGER"/>
+        <result column="commentator" property="commentator" jdbcType="INTEGER"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="like_count" property="likeCount" jdbcType="INTEGER"/>
+    </resultMap>
+    <resultMap id="commentMap" type="com.hzs.rc.vo.CommentVO">
+        <result column="m_id" property="id" jdbcType="INTEGER"/>
+        <result column="m_pid" property="parentId" jdbcType="INTEGER"/>
+        <result column="m_content" property="content" jdbcType="VARCHAR"/>
+        <result column="type" property="type" jdbcType="INTEGER"/>
+        <result column="m_create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="m_like" property="likeCount" jdbcType="INTEGER"/>
+        <association property="commentatorVO" javaType="com.hzs.rc.vo.CommentatorVO">
+            <result column="commentatorId" jdbcType="INTEGER" property="commentatorId"/>
+            <result column="commentatorName" jdbcType="VARCHAR" property="commentatorName"/>
+        </association>
+        <collection property="lowCommentVOList" resultMap="lowCommentMap"/>
+    </resultMap>
+    <resultMap id="lowCommentMap" type="com.hzs.rc.vo.LowCommentVO">
+        <result column="id" property="id" jdbcType="INTEGER"/>
+        <result column="parent_id" property="parentId" jdbcType="INTEGER"/>
+        <result column="content" property="content" jdbcType="VARCHAR"/>
+        <result column="type" property="type" jdbcType="INTEGER"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="like_count" property="likeCount" jdbcType="INTEGER"/>
+        <association property="lowCommentatorVO" javaType="com.hzs.rc.vo.LowCommentatorVO">
+            <result column="lowCommentatorId" jdbcType="INTEGER" property="lowCommentatorId"/>
+            <result column="lowCommentatorName" jdbcType="VARCHAR" property="lowCommentatorName"/>
+        </association>
+    </resultMap>
+    <insert id="insert" parameterType="com.hzs.rc.entity.Comment">
+        insert into comment ( parent_id, type,content,
+        commentator, create_time
+        )
+        values (#{parentId,jdbcType=INTEGER}, #{type,jdbcType=INTEGER}, #{content,jdbcType=VARCHAR},
+        #{commentator,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}
+        )
+    </insert>
+    <update id="updateLikeCount">
+        update comment
+        set like_count = like_count +1
+        where id =#{id}
+    </update>
+    <delete id="delete">
+        delete from comment where
+        id=#{id}
+    </delete>
+    <select id="commentMng" resultMap="commentMap">
+        SELECT m.*,low.*
+        FROM ((SELECT c0.id m_id,c0.parent_id m_pid,c0.content m_content,c0.like_count m_like,u0.user_id commentatorId,c0.create_time
+        m_create_time,u0.user_name commentatorName
+        FROM COMMENT c0,user_detail u0
+        WHERE c0.commentator = u0.user_id
+        AND c0.type = 1
+        ))m
+        LEFT JOIN
+        ( SELECT c1.*,u1.user_id lowCommentatorId,u1.user_name lowCommentatorName
+        FROM COMMENT c1 , user_detail u1
+        WHERE c1.commentator = u1.user_id
+        AND c1.type = 2
+        ) low
+        ON m.m_id = low.parent_id
+        order by m.m_like DESC,m.m_create_time DESC
+    </select>
+
+</mapper>

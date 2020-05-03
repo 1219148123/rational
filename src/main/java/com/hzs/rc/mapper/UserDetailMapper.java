@@ -20,4 +20,6 @@ public interface UserDetailMapper {
     void  openStore(Integer userId);
 
     void updateCurSpent(@Param(value = "userId")Integer userId, @Param(value = "spent")Double spent);
+
+    void setCurSpentBlank();
 }
