@@ -15,6 +15,8 @@ import java.util.List;
 public interface GoodService {
     void insertGood(GoodsDTO goodsDTO, MultipartFile[] uploadFiles);
 
+    void addGood(GoodsDTO goodsDTO,String photo);
+
     void invalidGood(Integer goodId);
 
     List<GoodsVO> goodsList(Integer storeId);

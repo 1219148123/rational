@@ -7,6 +7,7 @@ import com.hzs.rc.entity.FileUploadResult;
 import com.hzs.rc.service.impl.FileUploadService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -33,7 +34,7 @@ public class FileUploadController {
      * @return FileUploadResult
      * @Param uploadFile
      */
-    @RequestMapping("file/upload")
+    @PostMapping("file/upload")
     @ResponseBody
     public FileUploadResult upload(@RequestParam("file") MultipartFile uploadFile)
             throws Exception {
@@ -46,7 +47,7 @@ public class FileUploadController {
      * @author 团子
      * @Param objectName
      */
-    @RequestMapping("file/delete")
+    @PostMapping("file/delete")
     @ResponseBody
     public FileUploadResult delete(@RequestParam("fileName") String objectName)
             throws Exception {
@@ -59,7 +60,7 @@ public class FileUploadController {
      * @return List<OSSObjectSummary>
      * @Param
      */
-    @RequestMapping("file/list")
+    @PostMapping("file/list")
     @ResponseBody
     public List<OSSObjectSummary> list()
             throws Exception {
@@ -72,7 +73,7 @@ public class FileUploadController {
      * @return
      * @Param objectName
      */
-    @RequestMapping("file/download")
+    @PostMapping("file/download")
     @ResponseBody
     public void download(@RequestParam("fileName") String objectName, HttpServletResponse response) throws IOException {
         //通知浏览器以附件形式下载

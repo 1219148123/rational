@@ -44,6 +44,16 @@ public class GoodServiceImpl implements GoodService {
     }
 
     @Override
+    public void addGood(GoodsDTO goodsDTO,String photo) {
+        Goods goods = new Goods();
+        BeanUtils.copyProperties(goodsDTO, goods);
+        goods.setUpdateTime(new Date());
+        goodsMapper.insertGood(goods);
+        goods.setImgAddr(photo);
+        goodsMapper.updateImgAddr(goods);
+    }
+
+    @Override
     public void invalidGood(Integer goodId) {
         goodsMapper.invalidGood(goodId);
     }

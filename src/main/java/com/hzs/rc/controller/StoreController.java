@@ -1,14 +1,17 @@
 package com.hzs.rc.controller;
 
 import com.hzs.rc.dto.StoreDTO;
+import com.hzs.rc.entity.FileUploadResult;
 import com.hzs.rc.service.StoreService;
 import com.hzs.rc.service.UserDetailService;
+import com.hzs.rc.service.impl.FileUploadService;
 import com.hzs.rc.vo.StoreGoodsVO;
 import com.hzs.rc.vo.StoreVO;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -35,32 +38,17 @@ public class StoreController {
     StoreService storeService;
     @Resource
     UserDetailService userDetailService;
-
+    @Autowired
+    private FileUploadService fileUploadService;
     String photo = "";
     private static final Logger LOGGER = LoggerFactory.getLogger(StoreController.class);
 
-    @ApiOperation(value = "添加店铺", notes = "根据参数添加店铺")
+    @ApiOperation(value = "开店上传图片", notes = "开店上传图片")
     @PostMapping(value = "/test")
-    public String test(@RequestParam("file") MultipartFile file) {
-        if (file.isEmpty()) {
-            return "上传失败，请选择文件";
-        }
-        String contentType = file.getContentType();
-        String fileName = file.getOriginalFilename();
-        String filePath = "D://image//store//";
-        File dest = new File(new File(filePath).getAbsolutePath() + "/" + fileName);
-        if (!dest.getParentFile().exists()) {
-            dest.getParentFile().mkdirs();
-        }
-        try {
-            LOGGER.info("{}", dest + "/////");
-            file.transferTo(dest);
-            photo = dest.toString();
-            return "店铺图片上传成功";
-        } catch (IOException e) {
-            LOGGER.error(e.toString(), e);
-        }
-        return "插入失败";
+    public FileUploadResult test(@RequestParam("file") MultipartFile uploadFile) {
+        FileUploadResult upload = this.fileUploadService.upload(uploadFile);
+        this.photo = upload.getName();
+        return upload;
     }
 
     @ApiOperation(value = "添加店铺", notes = "根据参数添加店铺")
