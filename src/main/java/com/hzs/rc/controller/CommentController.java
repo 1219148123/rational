@@ -4,10 +4,7 @@ import com.hzs.rc.dto.CommentDTO;
 import com.hzs.rc.service.CommentService;
 import com.hzs.rc.vo.CommentVO;
 import io.swagger.annotations.ApiOperation;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.validation.Valid;
@@ -32,9 +29,9 @@ public class CommentController {
     }
 
     @ApiOperation(value = "评论列表查询", notes = "评论列表")
-    @PostMapping("/list")
-    public List<CommentVO> commentMng() {
-        return commentService.commentMng();
+    @GetMapping("/list")
+    public List<CommentVO> commentMng(String id) {
+        return commentService.commentMng(Integer.valueOf(id));
     }
 
     @ApiOperation(value = "点赞", notes = "点赞")

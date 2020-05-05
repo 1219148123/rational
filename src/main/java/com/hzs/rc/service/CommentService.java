@@ -15,7 +15,7 @@ import java.util.List;
 public interface CommentService {
     int insert(CommentDTO commentDTO);
 
-    List<CommentVO> commentMng();
+    List<CommentVO> commentMng(Integer id);
 
     void updateLikeCount(Integer id);
 }

@@ -59,6 +59,7 @@
         FROM COMMENT c0,user_detail u0
         WHERE c0.commentator = u0.user_id
         AND c0.type = 1
+        and c0.parent_id =#{id}
         ))m
         LEFT JOIN
         ( SELECT c1.*,u1.user_id lowCommentatorId,u1.user_name lowCommentatorName

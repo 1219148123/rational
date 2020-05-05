@@ -31,8 +31,8 @@ public class CommentServiceImpl implements CommentService {
     }
 
     @Override
-    public List<CommentVO> commentMng() {
-        return commentMapper.commentMng();
+    public List<CommentVO> commentMng(Integer id) {
+        return commentMapper.commentMng(id);
     }
 
     @Override
