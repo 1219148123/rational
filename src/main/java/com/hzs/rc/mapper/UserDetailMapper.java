@@ -6,6 +6,8 @@ import com.hzs.rc.vo.UserDetailVO;
 import io.swagger.models.auth.In;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.List;
+
 public interface UserDetailMapper {
     int insertUserDetail(UserDetail record);
 
@@ -22,4 +24,6 @@ public interface UserDetailMapper {
     void updateCurSpent(@Param(value = "userId")Integer userId, @Param(value = "spent")Double spent);
 
     void setCurSpentBlank();
+
+    List<UserDetailVO> userList();
 }

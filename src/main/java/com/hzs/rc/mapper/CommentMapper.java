@@ -17,4 +17,6 @@ public interface CommentMapper {
 
     //4.评论点赞数+1
     void updateLikeCount(Integer id);
+
+    List<CommentVO> commentList();
 }

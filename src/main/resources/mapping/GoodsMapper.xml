@@ -52,5 +52,9 @@
         select * from goods
         where good_id = #{goodId,jdbcType=INTEGER}
     </select>
+    <select id="goodsList" resultType="com.hzs.rc.vo.GoodsVO">
+        select *
+        from goods
+    </select>
 
 </mapper>

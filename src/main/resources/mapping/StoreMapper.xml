@@ -69,7 +69,7 @@
         select * from store
         where owner_id = #{ownerId,jdbcType=INTEGER}
     </select>
-    <select id="storeListAdmin" resultType="com.hzs.rc.vo.StoreVO">
+    <select id="storeList" resultType="com.hzs.rc.vo.StoreVO">
         select * from store
     </select>
     <select id="storeDetail" resultType="com.hzs.rc.vo.StoreVO">

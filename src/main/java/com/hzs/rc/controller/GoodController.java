@@ -38,6 +38,7 @@ public class GoodController {
     private FileUploadService fileUploadService;
     @ApiOperation(value = "商品插入", notes = "商品插入")
     @PostMapping("/insert")
+    @CrossOrigin
     public void insertGood(MultipartFile[] uploadFiles, @Valid GoodsDTO goodsDTO) {
         goodService.insertGood(goodsDTO, uploadFiles);
     }

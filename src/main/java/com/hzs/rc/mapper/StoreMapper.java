@@ -32,5 +32,6 @@ public interface StoreMapper {
     void validStore(Integer id);
 
     //查看所有的店铺信息 管理员
-    List<StoreVO> storeListAdmin(Integer userId);
+    List<StoreVO> storeList();
+
 }

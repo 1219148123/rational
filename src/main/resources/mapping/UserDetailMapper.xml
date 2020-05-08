@@ -58,4 +58,8 @@
         select * from user_detail
         where user_id=#{userId}
     </select>
+    <select id="userList" resultType="com.hzs.rc.vo.UserDetailVO">
+        select *
+        from user_detail
+    </select>
 </mapper>

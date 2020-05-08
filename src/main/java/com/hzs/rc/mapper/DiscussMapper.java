@@ -30,4 +30,6 @@ public interface DiscussMapper {
 
     //9.修改更新时间
     void updateTime(Discuss discuss);
+
+    List<DiscussVO> discussList();
 }

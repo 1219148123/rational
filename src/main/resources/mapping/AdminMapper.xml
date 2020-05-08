@@ -1,16 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hzs.rc.mapper.AdminMapper">
-  <resultMap id="BaseResultMap" type="com.hzs.rc.entity.Admin">
-    <result column="id" jdbcType="INTEGER" property="id" />
-    <result column="admin_account" jdbcType="VARCHAR" property="adminAccount" />
-    <result column="admin_password" jdbcType="VARCHAR" property="adminPassword" />
-  </resultMap>
-  <insert id="insertAdmin" parameterType="com.hzs.rc.entity.Admin">
-    insert into admin (id, admin_account, admin_password
-      )
-    values (#{id,jdbcType=INTEGER}, #{adminAccount,jdbcType=VARCHAR}, #{adminPassword,jdbcType=VARCHAR}
-      )
-  </insert>
+    <resultMap id="BaseResultMap" type="com.hzs.rc.entity.Admin">
+        <result column="id" jdbcType="INTEGER" property="id"/>
+        <result column="admin_account" jdbcType="VARCHAR" property="adminAccount"/>
+        <result column="admin_password" jdbcType="VARCHAR" property="adminPassword"/>
+    </resultMap>
+    <insert id="insertAdmin" parameterType="com.hzs.rc.entity.Admin">
+        insert into admin (admin_account, admin_password
+        )
+        values ( #{adminAccount,jdbcType=VARCHAR}, #{adminPassword,jdbcType=VARCHAR}
+        )
+    </insert>
+    <select id="login" resultType="com.hzs.rc.entity.Admin">
+        select * from admin
+        where admin_account=#{adminAccount}
+    </select>
+    <select id="getUserPassword" resultType="java.lang.String">
+        select admin_password
+        from admin
+        where admin_account=#{adminAccount}
+    </select>
 
 </mapper>

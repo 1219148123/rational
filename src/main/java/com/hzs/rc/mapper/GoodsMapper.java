@@ -23,4 +23,6 @@ public interface GoodsMapper {
 
     //商品信息查看
     GoodsVO goodsDetail(Integer goodId);
+
+    List<GoodsVO> goodsList();
 }

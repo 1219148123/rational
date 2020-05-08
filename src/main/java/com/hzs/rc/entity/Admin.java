@@ -9,7 +9,6 @@ import org.springframework.stereotype.Component;
  * @description: controller
  * @Date 2020年01月21日
  */
-@Component
 @Data
 public class Admin {
     private Integer id;

@@ -107,4 +107,8 @@
     <select id="getCount" resultType="java.lang.Integer">
         select count(1) from discuss
     </select>
+    <select id="discussList" resultType="com.hzs.rc.vo.DiscussVO">
+        select *
+        from discuss
+    </select>
 </mapper>
