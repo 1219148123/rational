@@ -2,6 +2,7 @@ package com.hzs.rc.mapper;
 
 import com.hzs.rc.dto.UserDetailDTO;
 import com.hzs.rc.entity.UserDetail;
+import com.hzs.rc.vo.AdminUser;
 import com.hzs.rc.vo.UserDetailVO;
 import io.swagger.models.auth.In;
 import org.apache.ibatis.annotations.Param;
@@ -25,5 +26,5 @@ public interface UserDetailMapper {
 
     void setCurSpentBlank();
 
-    List<UserDetailVO> userList();
+    List<AdminUser> userList();
 }

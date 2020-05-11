@@ -14,7 +14,7 @@ public interface DiscussMapper {
     void update(Discuss discuss);
 
     //3.删除帖子
-    int delete(Integer id);
+    void delete(Integer id);
 
     //4.帖子详情查看
     DiscussVO selectDiscuss(Integer id);

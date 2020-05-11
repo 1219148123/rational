@@ -54,6 +54,7 @@ public class GoodController {
     @ApiOperation(value = "商品插入", notes = "商品插入")
     @PostMapping("/add")
     public void addGood(@RequestBody @Valid  GoodsDTO goodsDTO) {
+        this.photo = this.photo.substring(0,this.photo.length()-1);
         goodService.addGood(goodsDTO,photo);
         this.photo = "";
     }

@@ -21,7 +21,17 @@
     open_store= 1
     where user_id=#{userId}
   </update>
-  <select id="getUserOldPassword" resultType="java.lang.String">
+  <update id="invalidUser">
+    update user set
+    state_code = 1001
+    where user_id=#{userId}
+  </update>
+    <update id="activeUser">
+      update user set
+      state_code = 1000
+      where user_id=#{userId}
+    </update>
+    <select id="getUserOldPassword" resultType="java.lang.String">
     select user_password from user
     where user_id=#{userId,jdbcType=VARCHAR}
   </select>

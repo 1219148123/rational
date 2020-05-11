@@ -68,6 +68,7 @@
     <select id="storeListUser" resultType="com.hzs.rc.vo.StoreVO">
         select * from store
         where owner_id = #{ownerId,jdbcType=INTEGER}
+        and store.state_code=1000
     </select>
     <select id="storeList" resultType="com.hzs.rc.vo.StoreVO">
         select * from store
@@ -78,10 +79,16 @@
     </select>
     <select id="getStoreGoods" resultMap="storeGoodsMap">
         SELECT s.store_name,s.store_id,g.*
-        FROM store s,goods g
-        WHERE s.store_id = g.store_id
+        FROM store s , goods g
+        where s.store_id = g.store_id
         AND g.good_status=1
+        and s.state_code = 1000
         ORDER BY s.store_id,g.priority
+    </select>
+    <select id="invalidStoreListUser" resultType="com.hzs.rc.vo.StoreVO">
+        select * from store
+        where owner_id = #{ownerId,jdbcType=INTEGER}
+        and store.state_code=1001
     </select>
 
 </mapper>

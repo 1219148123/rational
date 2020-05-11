@@ -16,6 +16,8 @@ public interface StoreMapper {
     //查看所有的店铺  普通用户 目前查的是所有状态后续改为只查有效的店铺 TODO
     List<StoreVO> storeListUser(Integer userId);
 
+    //查看所有无效的店铺  普通用户 目前查的是所有状态后续改为只查有效的店铺 TODO
+    List<StoreVO> invalidStoreListUser(Integer userId);
     //查看某个店铺用于修改前的信息查看回显 普通用户
     StoreVO storeDetail(Integer id);
 

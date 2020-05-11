@@ -83,6 +83,11 @@ public class StoreServiceImpl implements StoreService {
         return storeGoods;
     }
 
+    @Override
+    public List<StoreVO> invalidStoreList(Integer userId) {
+        return storeMapper.invalidStoreListUser(userId);
+    }
+
     @Transactional(rollbackFor = Exception.class)
     public String upload(MultipartFile file, Integer storeId) {
         if (file.isEmpty()) {

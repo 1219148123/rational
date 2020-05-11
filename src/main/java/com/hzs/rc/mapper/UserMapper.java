@@ -18,4 +18,9 @@ public interface UserMapper {
 
     //状态修改为开店(管理员审核的时候设置)
     void openStore(Integer userId);
+
+    //用户注销
+    void  invalidUser(Integer userId);
+
+    void activeUser(Integer userId);
 }

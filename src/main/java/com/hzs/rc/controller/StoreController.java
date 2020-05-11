@@ -65,10 +65,16 @@ public class StoreController {
         return storeService.getStoreGoods();
     }
 
-    @ApiOperation(value = "获取所有店铺", notes = "所有店铺")
+    @ApiOperation(value = "获取某用户所有有效店铺", notes = "所有店铺")
     @GetMapping(value = "/getStoreList")
     public List<StoreVO> getStoreList(String userId) {
         return storeService.storeList(Integer.valueOf(userId));
+    }
+
+    @ApiOperation(value = "获取某用户所有无效店铺", notes = "所有店铺")
+    @GetMapping(value = "/getInvalidStoreList")
+    public List<StoreVO> getInvalidStoreList(String userId) {
+        return storeService.invalidStoreList(Integer.valueOf(userId));
     }
 
     @ApiOperation(value = "获取店铺详情", notes = "店铺详情")

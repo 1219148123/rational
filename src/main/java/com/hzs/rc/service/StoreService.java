@@ -26,4 +26,6 @@ public interface StoreService {
 
     //查看所有的店铺及该店铺下商品 用户
     List<StoreGoodsVO> getStoreGoods();
+
+    List<StoreVO> invalidStoreList(Integer userId);
 }

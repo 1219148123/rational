@@ -50,7 +50,7 @@ public class UserController {
     @PostMapping(value = "/login")
     public Object login(@Valid @RequestBody UserDTO userDTO, HttpServletRequest httpServletRequest) {
         Integer res = userService.login(userDTO);
-        if (res != 0 && res != -1) {
+        if (res != 0 && res != -1 && res != -2) {
             HttpSession session = httpServletRequest.getSession();
             session.setAttribute("hzsUser", userDetailService.getUserDetail(res));
             return 1;

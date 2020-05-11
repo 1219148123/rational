@@ -58,8 +58,9 @@
         select * from user_detail
         where user_id=#{userId}
     </select>
-    <select id="userList" resultType="com.hzs.rc.vo.UserDetailVO">
-        select *
-        from user_detail
+    <select id="userList" resultType="com.hzs.rc.vo.AdminUser">
+        select ud.*,u.state_code stateCode
+        from user_detail ud,user u
+        where ud.user_id=u.user_id
     </select>
 </mapper>
