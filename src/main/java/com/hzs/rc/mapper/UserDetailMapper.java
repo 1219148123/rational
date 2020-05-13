@@ -27,4 +27,6 @@ public interface UserDetailMapper {
     void setCurSpentBlank();
 
     List<AdminUser> userList();
+
+    void updateUserSpent(UserDetail userDetail);
 }

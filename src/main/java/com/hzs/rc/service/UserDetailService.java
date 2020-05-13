@@ -20,4 +20,7 @@ public interface UserDetailService {
     void updateUserDetail(UserDetailDTO userDetailDTO);
 
     void updateCurSpent(Integer userId,Double userCurrentSpent);
+
+    void updateUserSpent(UserDetailDTO userDetailDTO);
+
 }

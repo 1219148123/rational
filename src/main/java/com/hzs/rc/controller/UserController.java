@@ -73,6 +73,14 @@ public class UserController {
         session.setAttribute("hzsUser", userDetailService.getUserDetail(userDetailDTO.getUserId()));
     }
 
+    @ApiOperation(value = "完善用户信息", notes = "根据参数完善用户信息")
+    @PostMapping(value = "/updateUserSpent")
+    public void updateUserSpent(@Valid @RequestBody UserDetailDTO userDetailDTO, HttpServletRequest httpServletRequest) {
+        userDetailService.updateUserSpent(userDetailDTO);
+        HttpSession session = httpServletRequest.getSession();
+        session.setAttribute("hzsUser", userDetailService.getUserDetail(userDetailDTO.getUserId()));
+    }
+
     @ApiOperation(value = "修改用户密码", notes = "填写旧密码新密码修改密码")
     @PostMapping(value = "/updatePassword")
     public Integer setPassword(@Valid @RequestBody PasswordDTO passwordDTO) {

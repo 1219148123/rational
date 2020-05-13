@@ -54,6 +54,11 @@
         update user_detail
         set user_current_spent = 0
     </update>
+    <update id="updateUserSpent">
+        update user_detail
+        set user_plan_spent=#{userPlanSpent}
+        where user_id=#{userId}
+    </update>
     <select id="getUserDetail" resultType="com.hzs.rc.vo.UserDetailVO">
         select * from user_detail
         where user_id=#{userId}

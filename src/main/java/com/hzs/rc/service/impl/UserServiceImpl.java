@@ -31,11 +31,11 @@ public class UserServiceImpl implements UserService {
         User login = new User();
         BeanUtils.copyProperties(userDTO,login);
         User user = userMapper.login(login);
-        if(user.getStateCode().equals("1001")){
-            return -2;
-        }
+
         if (user == null){
             return 0;//账号不存在
+        }else if(user.getStateCode().equals("1001")){
+            return -2;
         }else if(user.getUserPassword().equals(userDTO.getUserPassword())) {
             return user.getUserId();
         }
@@ -54,9 +54,13 @@ public class UserServiceImpl implements UserService {
     public Integer userSignUp(UserDTO userDTO) {
         User user = new User();
         BeanUtils.copyProperties(userDTO,user);
-        flag = userMapper.insertUser(user);
-        userDetailService.insertUserDetailForSignUp(user);
-        return flag;
+        User name = userMapper.login(user);//判断用户名是否被使用
+        if(name == null) {
+            flag = userMapper.insertUser(user);
+            userDetailService.insertUserDetailForSignUp(user);
+            return flag;
+        }
+        return -2;
     }
     /**
      *@描述   用户修改密码接口
