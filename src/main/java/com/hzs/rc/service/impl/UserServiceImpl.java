@@ -6,6 +6,7 @@ import com.hzs.rc.entity.User;
 import com.hzs.rc.mapper.UserMapper;
 import com.hzs.rc.service.UserDetailService;
 import com.hzs.rc.service.UserService;
+import com.hzs.rc.vo.UserDetailVO;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -89,4 +90,5 @@ public class UserServiceImpl implements UserService {
         userMapper.updatePassword(passwordDTO);
         return 3;
     }
+
 }

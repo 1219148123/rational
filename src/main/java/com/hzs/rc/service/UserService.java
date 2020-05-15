@@ -3,6 +3,7 @@ package com.hzs.rc.service;
 import com.hzs.rc.dto.PasswordDTO;
 import com.hzs.rc.dto.UserDTO;
 import com.hzs.rc.entity.User;
+import com.hzs.rc.vo.UserDetailVO;
 
 /**
  * <p>UserService接口</p>

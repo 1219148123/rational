@@ -5,6 +5,8 @@ import com.hzs.rc.dto.UserDTO;
 import com.hzs.rc.dto.UserDetailDTO;
 import com.hzs.rc.service.UserDetailService;
 import com.hzs.rc.service.UserService;
+import com.hzs.rc.vo.GoodsVO;
+import com.hzs.rc.vo.UserDetailVO;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.apache.ibatis.annotations.Param;
@@ -58,6 +60,11 @@ public class UserController {
         return res;
     }
 
+    @ApiOperation(value = "用户详情", notes = "用户详情")
+    @GetMapping("/getUserDetail")
+    public UserDetailVO getDetail(String userId) {
+        return userDetailService.getUserDetail(Integer.valueOf(userId));
+    }
 
     @ApiOperation(value = "添加用户", notes = "根据参数添加用户")
     @PostMapping(value = "/userSignUp")

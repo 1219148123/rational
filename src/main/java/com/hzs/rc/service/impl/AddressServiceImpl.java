@@ -36,8 +36,7 @@ public class AddressServiceImpl implements AddressService {
     public int addAddress(AddressDTO addressDTO) {
         Address address = new Address();
         BeanUtils.copyProperties(addressDTO,address);
-
-        address.setUserId(1);//ToDo
+        address.setUserId(address.getId());
         int insert = addressMapper.insert(address);
         return insert;
     }
