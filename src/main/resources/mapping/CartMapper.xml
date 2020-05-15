@@ -115,7 +115,9 @@
         WHERE s.store_id = g.store_id
         AND g.good_id = c.good_id
         AND g.good_status = 1
-        AND g.good_id IN (SELECT good_id FROM cart c WHERE c.user_id =#{userId} AND c.checked =1)
+        AND g.good_id IN (SELECT good_id FROM cart ca WHERE ca.user_id =#{userId} AND ca.checked =1)
+        AND c.user_id=#{userId}
+        AND c.checked =1
     </select>
     <select id="getCartVo" resultType="com.hzs.rc.vo.CartVO">
         select c.*

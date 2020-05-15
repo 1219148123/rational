@@ -12,6 +12,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 /**
@@ -35,6 +36,7 @@ public class AddressServiceImpl implements AddressService {
     public int addAddress(AddressDTO addressDTO) {
         Address address = new Address();
         BeanUtils.copyProperties(addressDTO,address);
+
         address.setUserId(1);//ToDo
         int insert = addressMapper.insert(address);
         return insert;
