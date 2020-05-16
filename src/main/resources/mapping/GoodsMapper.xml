@@ -43,6 +43,11 @@
         set img_addr = #{imgAddr,jdbcType=VARCHAR}
         where good_id = #{goodId,jdbcType=INTEGER}
     </update>
+    <update id="validGood">
+        update goods
+        set good_status = 1
+        where good_id = #{goodId,jdbcType=INTEGER}
+    </update>
     <select id="selectGoodsList" resultType="com.hzs.rc.vo.GoodsVO">
         select * from goods
         where store_id = #{storeId,jdbcType=INTEGER}
@@ -55,6 +60,23 @@
     <select id="goodsList" resultType="com.hzs.rc.vo.GoodsVO">
         select *
         from goods
+    </select>
+    <select id="seleteGoodsByPrice" resultType="com.hzs.rc.vo.GoodsVO">
+        select *
+        from goods
+        order by price asc
+        limit 0,8
+    </select>
+    <select id="seleteGoodsByPro" resultType="com.hzs.rc.vo.GoodsVO">
+        select *
+        from goods
+        order by priority desc
+        limit 0,8
+    </select>
+    <select id="selectInvalidGoodsList" resultType="com.hzs.rc.vo.GoodsVO">
+        select * from goods
+        where store_id = #{storeId,jdbcType=INTEGER}
+        and good_status=0
     </select>
 
 </mapper>

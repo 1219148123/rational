@@ -57,12 +57,13 @@ public class StoreController {
         storeService.inserStore(storeDTO, photo);
         HttpSession session = httpServletRequest.getSession();
         session.setAttribute("hzsUser", userDetailService.getUserDetail(storeDTO.getOwnerId()));
+        this.photo ="";
     }
 
     @ApiOperation(value = "获取所有店铺及商品", notes = "获取所有店铺及商品")
     @GetMapping(value = "/getStoreGoodsList")
-    public List<StoreGoodsVO> getStoreGoods() {
-        return storeService.getStoreGoods();
+    public List<StoreGoodsVO> getStoreGoods(String type) {
+        return storeService.getStoreGoods(Integer.valueOf(type));
     }
 
     @ApiOperation(value = "获取某用户所有有效店铺", notes = "所有店铺")
@@ -85,8 +86,8 @@ public class StoreController {
 
     @ApiOperation(value = "修改店铺", notes = "修改店铺")
     @PostMapping(value = "/updateStore")
-    public void updateStore(@Valid StoreDTO storeDTO, @RequestParam("file") MultipartFile file) {
-        storeService.updateStore(storeDTO, file);
+    public void updateStore(@RequestBody @Valid StoreDTO storeDTO) {
+        storeService.updateStore(storeDTO, photo);
     }
 
     @ApiOperation(value = "修改置为无效", notes = "修改店铺")

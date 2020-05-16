@@ -19,9 +19,18 @@ public interface GoodService {
 
     void invalidGood(Integer goodId);
 
+    void validGood(Integer goodId);
+
     List<GoodsVO> goodsList(Integer storeId);
+
+    List<GoodsVO> selectInvalidGoodsList(Integer storeId);
 
     GoodsVO goodDetail(Integer goodId);
 
-    void updateGood(GoodsDTO goodsDTO, MultipartFile[] uploadFiles);
+    void updateGood(GoodsDTO goodsDTO,String photo);
+
+    List<GoodsVO> seleteGoodsByPrice();
+
+    //获取商品列表 通过权重降序 查6个
+    List<GoodsVO> seleteGoodsByPro();
 }

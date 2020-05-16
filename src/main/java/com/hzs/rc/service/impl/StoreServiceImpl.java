@@ -57,13 +57,11 @@ public class StoreServiceImpl implements StoreService {
     }
 
     @Override
-    public void updateStore(StoreDTO storeDTO, MultipartFile file) {
+    public void updateStore(StoreDTO storeDTO, String photo) {
         Store store = new Store();
         BeanUtils.copyProperties(storeDTO, store);
         storeMapper.updateStore(store);
-        System.out.println(store);
-        String storePhoto = upload(file, store.getStoreId());
-        store.setStorePhoto(storePhoto);
+        store.setStorePhoto(photo);
         storeMapper.updatePhoto(store);
     }
 
@@ -78,8 +76,8 @@ public class StoreServiceImpl implements StoreService {
     }
 
     @Override
-    public List<StoreGoodsVO> getStoreGoods() {
-        List<StoreGoodsVO> storeGoods = storeMapper.getStoreGoods();
+    public List<StoreGoodsVO> getStoreGoods(Integer type) {
+        List<StoreGoodsVO> storeGoods = storeMapper.getStoreGoods(type);
         return storeGoods;
     }
 

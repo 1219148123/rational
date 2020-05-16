@@ -59,8 +59,18 @@ public class GoodServiceImpl implements GoodService {
     }
 
     @Override
+    public void validGood(Integer goodId) {
+        goodsMapper.validGood(goodId);
+    }
+
+    @Override
     public List<GoodsVO> goodsList(Integer storeId) {
         return goodsMapper.selectGoodsList(storeId);
+    }
+
+    @Override
+    public List<GoodsVO> selectInvalidGoodsList(Integer storeId) {
+        return goodsMapper.selectInvalidGoodsList(storeId);
     }
 
     @Override
@@ -69,7 +79,7 @@ public class GoodServiceImpl implements GoodService {
     }
 
     @Override
-    public void updateGood(GoodsDTO goodsDTO, MultipartFile[] uploadFiles) {
+    public void updateGood(GoodsDTO goodsDTO,String photo) {
         Goods goods = new Goods();
         BeanUtils.copyProperties(goodsDTO, goods);
         goods.setUpdateTime(new Date());
@@ -78,14 +88,18 @@ public class GoodServiceImpl implements GoodService {
         GoodsVO goodsVO = goodsMapper.goodsDetail(goods.getGoodId());
         //修改
         BeanUtils.copyProperties(goodsVO, goods);
-        List upload = upload(uploadFiles, goods.getStoreId());
-        String imgAddr = "";
-        for (int i = 0; i < upload.size() - 1; i++) {
-            imgAddr += upload.get(i) + ",";
-        }
-        imgAddr += upload.get(upload.size() - 1);
-        goods.setImgAddr(imgAddr);
+        goods.setImgAddr(photo);
         goodsMapper.updateImgAddr(goods);
+    }
+
+    @Override
+    public List<GoodsVO> seleteGoodsByPrice() {
+        return goodsMapper.seleteGoodsByPrice();
+    }
+
+    @Override
+    public List<GoodsVO> seleteGoodsByPro() {
+        return goodsMapper.seleteGoodsByPro();
     }
 
 

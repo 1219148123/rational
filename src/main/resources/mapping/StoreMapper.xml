@@ -83,6 +83,9 @@
         where s.store_id = g.store_id
         AND g.good_status=1
         and s.state_code = 1000
+        <if test="type != null and type != 0">
+            and s.store_cate = #{type}
+        </if>
         ORDER BY s.store_id,g.priority
     </select>
     <select id="invalidStoreListUser" resultType="com.hzs.rc.vo.StoreVO">

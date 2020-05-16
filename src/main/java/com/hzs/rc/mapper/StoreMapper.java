@@ -22,7 +22,7 @@ public interface StoreMapper {
     StoreVO storeDetail(Integer id);
 
     //查看所有的店铺及该店铺下商品 用户
-    List<StoreGoodsVO> getStoreGoods();
+    List<StoreGoodsVO> getStoreGoods(Integer type);
 
     //更新店铺信息 普通用户
     void updateStore(Store store);
